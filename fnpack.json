@@ -9,11 +9,26 @@
     "download_url": "",
     "bug_report_url": "https://github.com/710850609/fpk-OpenList/issues",
     "install_type": "存储空间",
-    "size": "49.02",
+    "size": "49",
     "history": {
       "v0.2.1": "支持从应用中心进入服务。优化识别服务进程。优化界面文案",
       "v0.2.0": "支持界面修改admin密码。支持界面修改HTTP协议端口",
       "v0.0.1": "支持OpenList使用"
+    }
+  },  
+  "AdGuardHome": {
+    "display_name": "OpenList",
+    "desc": "OpenList飞牛原生应用, 支持自定义修改端口、超管密码",
+    "labels": "工具,效率",
+    "version": "0.107.71-build-0.1",
+    "author": "BoB",
+    "author_url": "https://github.com/710850609",
+    "download_url": "",
+    "bug_report_url": "https://github.com/710850609/fpk-OpenList/issues",
+    "install_type": "存储空间",
+    "size": "39.9",
+    "history": {
+      "0.107.71-build-0.1": "支持飞牛原生配置账号、密码。可选择国内适用配置(合适新手使用)"
     }
   }
 }
