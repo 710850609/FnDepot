@@ -6,13 +6,13 @@
     "version": "0.2.1",
     "author": "BoB",
     "author_url": "https://github.com/710850609",
-    "download_url": "https://www.123865.com/s/hwQPvd-5iohh",
+    "download_url": "https://gh.llkk.cc/https://github.com/710850609/fpk-OpenList/releases/latest/download/OpenList.fpk",
     "bug_report_url": "https://github.com/710850609/fpk-OpenList/issues",
     "install_type": "存储空间",
     "size": "49",
     "history": {
     }
-  },  
+  },
   "AdGuardHome": {
     "display_name": "AdGuardHome",
     "desc": "免费开源、强大的网络范围广告和跟踪器阻止DNS服务器",
@@ -20,7 +20,7 @@
     "version": "0.107.71-build-0.1",
     "author": "BoB",
     "author_url": "https://github.com/710850609",
-    "download_url": "",
+    "download_url": "https://gh.llkk.cc/https://github.com/710850609/fpk-adguardhome/releases/latest/download/AdGuardHome.fpk",
     "bug_report_url": "https://github.com/710850609/fpk-adguardhome/issues",
     "install_type": "存储空间",
     "size": "39.9",
