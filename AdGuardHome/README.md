@@ -1,3 +1,4 @@
+<h3>免费开源、强大的网络范围广告和跟踪器阻止DNS服务器</h3>
 <a href="https://github.com/AdguardTeam/AdGuardHome">Adguard Home源码</a>
 </br>
 
