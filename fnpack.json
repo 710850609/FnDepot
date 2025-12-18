@@ -17,7 +17,7 @@
     "display_name": "AdGuardHome",
     "desc": "免费开源、强大的网络范围广告和跟踪器阻止DNS服务器",
     "labels": "工具,效率",
-    "version": "0.107.71-build-0.1",
+    "version": "0.107.71-build-0.2",
     "author": "BoB",
     "author_url": "https://github.com/710850609",
     "download_url": "https://github.com/710850609/fpk-adguardhome/releases/latest/download/AdGuardHome.fpk",
