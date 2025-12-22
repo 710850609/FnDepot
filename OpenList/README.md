@@ -5,6 +5,13 @@
 <a href="https://ghproxy.cn/https://github.com/OpenListTeam/OpenList/releases/latest/download/openlist-linux-amd64-lite.tar.gz">OpenList程序下载</a>
 
 更新内容
+### 4.1.8-build-0.3.0
+- 升级OpenList4.1.8版本
+- 规范化版本号定义
+- 支持飞牛最低版本1.1.8
+- 优化设置服务端口一次性配置好
+- 优化启动速度
+
 ### 0.2.1
 - 支持从应用中心进入服务
 - 优化识别服务进程
