@@ -4,6 +4,10 @@
 <a href="https://github.com/dr34m-cn/taosync">taosync源码</a>
 
 ## 更新日志
+### 0.3.2-4
+- 修改版本号格式
+- 支持安装指定服务端口
+
 ### 0.3.2-build-0.3
 - 支持卸载选择是否保留配置数据
 
