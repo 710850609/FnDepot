@@ -2,9 +2,15 @@
 飞牛应用 - OpenList
 
 </br>
-<a href="https://ghproxy.cn/https://github.com/OpenListTeam/OpenList/releases/latest/download/openlist-linux-amd64-lite.tar.gz">OpenList程序下载</a>
+<a href="https://github.com/OpenListTeam/OpenList/releases/">OpenList程序下载</a>
 
 更新内容
+### 4.1.8-4
+- 新增支持arm64
+- 完善端口校验
+- 规范化版本号定义
+- 修改协议，保持和OpenList一致
+
 ### 4.1.8-build-0.3.0
 - 升级OpenList4.1.8版本
 - 规范化版本号定义
