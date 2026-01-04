@@ -3,7 +3,7 @@
     "display_name": "OpenList",
     "desc": "OpenList是一个有韧性、长期治理、社区驱动的 AList 分支，旨在防御基于信任的开源攻击。支持多种存储的文件列表程序",
     "labels": "工具,效率",
-    "version": "4.1.8-4",
+    "version": "4.1.9-5",
     "author": "BoB",
     "author_url": "https://github.com/710850609",
     "download_url": "https://github.com/710850609/fpk-OpenList/releases/latest/download/OpenList-linux-amd64.fpk",
