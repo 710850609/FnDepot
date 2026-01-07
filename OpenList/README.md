@@ -5,6 +5,11 @@
 <a href="https://github.com/OpenListTeam/OpenList/releases/">OpenList程序下载</a>
 
 更新内容
+### 4.1.9-7
+- 安装向导支持端口占用检查
+- 配置向导支持端口占用检查
+- 服务启动支持端口占用检查
+
 ### 4.1.9-6
 - 优化应用LOGO显示
 

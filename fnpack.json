@@ -2,8 +2,8 @@
   "OpenList": {
     "display_name": "OpenList",
     "desc": "OpenList是一个有韧性、长期治理、社区驱动的 AList 分支，旨在防御基于信任的开源攻击。支持多种存储的文件列表程序",
-    "labels": "工具,效率",
-    "version": "4.1.9-6",
+    "labels": "实用效率,备份同步",
+    "version": "4.1.9-7",
     "author": "BoB",
     "author_url": "https://github.com/710850609",
     "download_url": "https://github.com/710850609/fpk-OpenList/releases/latest/download/OpenList-linux-amd64.fpk",
@@ -16,8 +16,8 @@
   "AdGuardHome": {
     "display_name": "AdGuardHome",
     "desc": "免费开源、强大的网络范围广告和跟踪器阻止DNS服务器",
-    "labels": "工具,效率",
-    "version": "0.107.71-8",
+    "labels": "实用效率",
+    "version": "0.107.71-9",
     "author": "BoB",
     "author_url": "https://github.com/710850609",
     "download_url": "https://github.com/710850609/fpk-adguardhome/releases/latest/download/AdGuardHome-linux-amd64.fpk",
@@ -30,8 +30,8 @@
   "TaoSync": {
     "display_name": "TaoSync",
     "desc": "TaoSync是一个适用于OpenList/AList v3+的自动化同步工具。",
-    "labels": "工具,效率",
-    "version": "0.3.2-6",
+    "labels": "备份同步",
+    "version": "0.3.2-7",
     "author": "BoB",
     "author_url": "https://github.com/710850609",
     "download_url": "https://github.com/710850609/fpk-TaoSync/releases/latest/download/TaoSync-linux-amd64.fpk",
