@@ -31,7 +31,7 @@
     "display_name": "TaoSync",
     "desc": "TaoSync是一个适用于OpenList/AList v3+的自动化同步工具。",
     "labels": "备份同步",
-    "version": "0.3.2-7",
+    "version": "0.3.2-8",
     "author": "BoB",
     "author_url": "https://github.com/710850609",
     "download_url": "https://github.com/710850609/fpk-TaoSync/releases/latest/download/TaoSync-linux-amd64.fpk",
