@@ -1,7 +1,12 @@
-# fpk-taosync
-飞牛原生应用 - taosync 
+## 用途举例
+- 1. 同步备份
+    把本地文件备份到多个网盘或FTP之类的存储，或者在多个网盘之间同步文件等；
+    可以定时扫描指定目录下文件差异，让目标目录与源目录相同（全同步模式）；或仅新增存在于源目录，却不存在于目标目录的文件（仅新增模式）
+- 2. 定时下载
+    可以设置一次性任务（cron方式设置年月日时分秒，将在指定时间执行一次），可在闲时自动从特定网盘下载文件到本地
 
-<a href="https://github.com/dr34m-cn/taosync">taosync源码</a>
+<p><a href="https://github.com/dr34m-cn/taosync">taosync源码</a></p>
+<p><a href="https://qm.qq.com/q/MDHN8GlI4s">加入QQ群聊 767315692 讨论</a></p>
 
 ## 更新日志
 ### 0.3.2-8
