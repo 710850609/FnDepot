@@ -45,7 +45,7 @@
     "display_name": "SmartDNS",
     "desc": "SmartDNS是一个开源的DNS服务器，用于加速和优化网络访问。",
     "labels": "实用效率",
-    "version": "47.1-001",
+    "version": "47.1-002",
     "author": "BoB",
     "author_url": "https://github.com/710850609",
     "download_url": "https://github.com/710850609/fpk-SmartDNS/releases/latest/download/smartdns-x86_64.fpk",
