@@ -1,72 +1,67 @@
 {
-  "OpenList": {
-    "display_name": "OpenList",
-    "desc": "OpenList是一个有韧性、长期治理、社区驱动的 AList 分支，旨在防御基于信任的开源攻击。支持多种存储的文件列表程序",
-    "labels": "实用效率,备份同步",
-    "version": "4.1.10-10",
-    "author": "BoB",
-    "author_url": "https://github.com/710850609",
-    "download_url": "https://github.com/710850609/fpk-OpenList/releases/latest/download/OpenList-4.1.10-10-amd64.fpk",
-    "bug_report_url": "https://github.com/710850609/fpk-OpenList/issues",
-    "install_type": "存储空间",
-    "size": "49",
-    "history": {
+    "OpenList": {
+        "display_name": "OpenList",
+        "desc": "OpenList是一个有韧性、长期治理、社区驱动的 AList 分支，旨在防御基于信任的开源攻击。支持多种存储的文件列表程序",
+        "labels": "实用效率,备份同步",
+        "version": "4.1.10-10",
+        "author": "BoB",
+        "author_url": "https://github.com/710850609",
+        "download_url": "https://github.com/710850609/fpk-OpenList/releases/latest/download/OpenList-4.1.10-10-amd64.fpk",
+        "bug_report_url": "https://github.com/710850609/fpk-OpenList/issues",
+        "install_type": "存储空间",
+        "size": "49",
+        "history": {}
+    },
+    "AdGuardHome": {
+        "display_name": "AdGuardHome",
+        "desc": "免费开源、强大的网络范围广告和跟踪器阻止DNS服务器",
+        "labels": "实用效率",
+        "version": "0.107.71-11",
+        "author": "BoB",
+        "author_url": "https://github.com/710850609",
+        "download_url": "https://github.com/710850609/fpk-adguardhome/releases/latest/download/AdGuardHome-0.107.71-11-x86.fpk",
+        "bug_report_url": "https://github.com/710850609/fpk-adguardhome/issues",
+        "install_type": "存储空间",
+        "size": "12.4",
+        "history": {}
+    },
+    "TaoSync": {
+        "display_name": "TaoSync",
+        "desc": "TaoSync是一个适用于OpenList/AList v3+的自动化同步工具。",
+        "labels": "备份同步",
+        "version": "0.3.2-9",
+        "author": "BoB",
+        "author_url": "https://github.com/710850609",
+        "download_url": "https://github.com/710850609/fpk-TaoSync/releases/latest/download/TaoSync-0.3.2-9-x86.fpk",
+        "bug_report_url": "https://github.com/710850609/fpk-TaoSync/issues",
+        "install_type": "存储空间",
+        "size": "2.5",
+        "history": {}
+    },
+    "SmartDNS": {
+        "display_name": "SmartDNS",
+        "desc": "SmartDNS是一个开源的DNS服务器，用于加速和优化网络访问。",
+        "labels": "实用效率",
+        "version": "47.1-003",
+        "author": "BoB",
+        "author_url": "https://github.com/710850609",
+        "download_url": "https://github.com/710850609/fpk-smartdns/releases/latest/download/smartdns-47.1-003-x86.fpk",
+        "bug_report_url": "https://github.com/710850609/fpk-SmartDNS/issues",
+        "install_type": "存储空间",
+        "size": "6.2",
+        "history": {}
+    },
+    "DBland": {
+        "display_name": "DBland",
+        "desc": "Go语言实现的Web版本数据库连接工具，内存占用少，启动快，支持MySQL，Oracle，SQLite等",
+        "labels": "开发工具,数据库连接工具",
+        "version": "47.1-003",
+        "author": "BoB",
+        "author_url": "https://github.com/710850609",
+        "download_url": "https://github.com/710850609/fpk-dbland/releases/latest/download/dbland-1.1.1-001-amd64.fpk",
+        "bug_report_url": "https://github.com/710850609/fpk-DBland/issues",
+        "install_type": "存储空间",
+        "size": "15.67",
+        "history": {}
     }
-  },
-  "AdGuardHome": {
-    "display_name": "AdGuardHome",
-    "desc": "免费开源、强大的网络范围广告和跟踪器阻止DNS服务器",
-    "labels": "实用效率",
-    "version": "0.107.71-11",
-    "author": "BoB",
-    "author_url": "https://github.com/710850609",
-    "download_url": "https://github.com/710850609/fpk-adguardhome/releases/latest/download/AdGuardHome-0.107.71-11-x86.fpk",
-    "bug_report_url": "https://github.com/710850609/fpk-adguardhome/issues",
-    "install_type": "存储空间",
-    "size": "12.4",
-    "history": {
-    }
-  },
-  "TaoSync": {
-    "display_name": "TaoSync",
-    "desc": "TaoSync是一个适用于OpenList/AList v3+的自动化同步工具。",
-    "labels": "备份同步",
-    "version": "0.3.2-9",
-    "author": "BoB",
-    "author_url": "https://github.com/710850609",
-    "download_url": "https://github.com/710850609/fpk-TaoSync/releases/latest/download/TaoSync-0.3.2-9-x86.fpk",
-    "bug_report_url": "https://github.com/710850609/fpk-TaoSync/issues",
-    "install_type": "存储空间",
-    "size": "2.5",
-    "history": {
-    }
-  },
-  "SmartDNS": {
-    "display_name": "SmartDNS",
-    "desc": "SmartDNS是一个开源的DNS服务器，用于加速和优化网络访问。",
-    "labels": "实用效率",
-    "version": "47.1-003",
-    "author": "BoB",
-    "author_url": "https://github.com/710850609",
-    "download_url": "https://github.com/710850609/fpk-smartdns/releases/latest/download/smartdns-47.1-003-x86.fpk",
-    "bug_report_url": "https://github.com/710850609/fpk-SmartDNS/issues",
-    "install_type": "存储空间",
-    "size": "6.2",
-    "history": {
-    }
-  },
-  "DBland": {
-    "display_name": "DBland",
-    "desc": "Go语言实现的Web版本数据库连接工具，内存占用少，启动快，支持MySQL，Oracle，SQLite等",
-    "labels": "开发工具,数据库连接工具",
-    "version": "47.1-003",
-    "author": "BoB",
-    "author_url": "https://github.com/710850609",
-    "download_url": "https://github.com/710850609/fpk-dbland/releases/latest/download/dbland-1.1.1-001-amd64.fpk",
-    "bug_report_url": "https://github.com/710850609/fpk-DBland/issues",
-    "install_type": "存储空间",
-    "size": "15.67",
-    "history": {
-    }
-  }
 }
