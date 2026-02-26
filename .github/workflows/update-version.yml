@@ -40,7 +40,7 @@ jobs:
             exit 1
           fi
           
-          if [[ cat fnpack.json | jq '.${{ github.event.inputs.app_name }}' ]]; then
+          if [[ $(cat fnpack.json | jq '.${{ github.event.inputs.app_name }}') == "null" ]]; then
             echo "fnpack.json不存在应用: ${{ github.event.inputs.app_name }}"
             exit 1
           fi
@@ -60,7 +60,7 @@ jobs:
             fi
 
             echo "更新amd64架构包下载链接为: ${{ github.event.inputs.download_url_amd64 }}"
-            json_content=$(echo json_content | jq --arg package "${{ github.event.inputs.app_name }}" \
+            json_content=$(echo $json_content | jq --arg package "${{ github.event.inputs.app_name }}" \
             --arg download_url_amd64 "${{ github.event.inputs.download_url_amd64 }}" \
             ' .[$package].arch_diff //= {} 
             | .[$package].arch_diff.x86 //= {} 
@@ -75,7 +75,7 @@ jobs:
             fi
             
             echo "更新aarch64架构包下载链接为: ${{ github.event.inputs.download_url_aarch64 }}"
-            json_content=$(echo json_content | jq --arg package "${{ github.event.inputs.app_name }}" \
+            json_content=$(echo $json_content | jq --arg package "${{ github.event.inputs.app_name }}" \
             --arg download_url_aarch64 "${{ github.event.inputs.download_url_aarch64 }}" \
             ' .[$package].arch_diff //= {} 
             | .[$package].arch_diff.arm //= {} 
