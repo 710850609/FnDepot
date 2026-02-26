@@ -28,18 +28,17 @@ jobs:
         run: |
           # Read current fnpack.json
           current_content=$(cat fnpack.json)
-          
-          new_version=${{ github.event.inputs.new_version }}
-          download_url_amd64="https://github.com/710850609/fpk-adguardhome/releases/download/${{ new_version }}/AdGuardHome-${{ new_version }}-x86.fpk"
-          download_url_aarch64="https://github.com/710850609/fpk-adguardhome/releases/download/${{ new_version }}/AdGuardHome-${{ new_version }}-arm.fpk"
+          download_url_amd64="https://github.com/710850609/fpk-adguardhome/releases/download/${{ github.event.inputs.new_version }}/AdGuardHome-${{ github.event.inputs.new_version }}-x86.fpk"
+          download_url_aarch64="https://github.com/710850609/fpk-adguardhome/releases/download/${{ github.event.inputs.new_version }}/AdGuardHome-${{ github.event.inputs.new_version }}-arm.fpk"
 
           # Update fields using jq
           cat fnpack.json | jq --arg package "AdGuardHome" \
-            --arg version "${{ new_version }}" \
+            --arg version "${{ github.event.inputs.new_version }}" \
             --arg changelog "${{ github.event.inputs.changelog }}" \
             --arg download_url_amd64 "${{ download_url_amd64 }}" \
             --arg download_url_aarch64 "${{ download_url_aarch64 }}" \
-            ".[\$package].version = \$version \
+            " .[\$package].version = \$version \
+            | .[\$package].changelog = \$changelog \
             | .[\$package].download_url = \$download_url_amd64 \
             | .[\$package].arch_diff.x86.download_url = \$download_url_amd64 \
             | .[\$package].arch_diff.arm.download_url = \$download_url_aarch64"
