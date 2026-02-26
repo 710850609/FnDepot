@@ -32,6 +32,7 @@ jobs:
           download_url_aarch64="https://github.com/710850609/fpk-adguardhome/releases/download/${{ github.event.inputs.new_version }}/AdGuardHome-${{ github.event.inputs.new_version }}-arm.fpk"
 
           # Update fields using jq
+          # //= 操作符 ：这是 jq 中的 "默认赋值" 操作符，当左侧路径不存在时，会创建该路径并赋值为右侧的值
           updated_content=$(cat fnpack.json | jq --arg package "AdGuardHome" \
             --arg version "${{ github.event.inputs.new_version }}" \
             --arg changelog "${{ github.event.inputs.changelog }}" \
@@ -40,6 +41,9 @@ jobs:
             " .[$package].version = $version \
             | .[$package].changelog = $changelog \
             | .[$package].download_url = $download_url_amd64 \
+            | .[$package].arch_diff //= {} \
+            | .[$package].arch_diff.x86 //= {} \
+            | .[$package].arch_diff.arm //= {} \
             | .[$package].arch_diff.x86.download_url = $download_url_amd64 \
             | .[$package].arch_diff.arm.download_url = $download_url_aarch64")
           
