@@ -41,7 +41,7 @@ jobs:
           fi
           
           if [[ cat fnpack.json | jq '.${{ github.event.inputs.app_name }}' ]]; then
-            echo "fnpack.json不存在应用: ${github.event.inputs.app_name}"
+            echo "fnpack.json不存在应用: ${{ github.event.inputs.app_name }}"
             exit 1
           fi
 
@@ -53,7 +53,7 @@ jobs:
             | .[$package].changelog = $changelog ')
 
           if [[ "${{ github.event.inputs.download_url_amd64 }}" != "" ]]; then
-            response=$(curl -s -o /dev/null -w "%{http_code}" "${{ github.event.inputs.download_url_amd64 }}")
+            response=$(curl -s -L -I -o /dev/null -w "%{http_code}" "${{ github.event.inputs.download_url_amd64 }}")
             if [[ "$response" != "200" ]]; then
               echo "amd64架构包下载链接无效(HTTP $response)"
               exit 1
@@ -68,7 +68,7 @@ jobs:
           fi
 
           if [[ "${{ github.event.inputs.download_url_aarch64 }}" != "" ]]; then
-            response=$(curl -s -o /dev/null -w "%{http_code}" "${{ github.event.inputs.download_url_aarch64 }}")
+            response=$(curl -s -L -I -o /dev/null -w "%{http_code}" "${{ github.event.inputs.download_url_aarch64 }}")
             if [[ "$response" != "200" ]]; then
               echo "aarch64架构包下载链接无效(HTTP $response)"
               exit 1
@@ -83,11 +83,11 @@ jobs:
           fi
 
           # Write back to file
-          echo "$updated_content" > fnpack.json
+          echo "$json_content" > fnpack.json
           echo "更新后的 fnpack.json: $(cat fnpack.json)"
                   
           # Verify changes
-          echo "Changes made to fnpack.json:"
+          echo "更新fnpack.json:"
           git diff fnpack.json
 
       - name: Commit and push changes
