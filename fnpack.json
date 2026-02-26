@@ -67,7 +67,16 @@
     "bug_report_url": "https://github.com/710850609/fpk-SmartDNS/issues",
     "install_type": "存储空间",
     "size": "8",
-    "history": {}
+    "history": {},
+    "changelog": "",
+    "arch_diff": {
+      "x86": {
+        "download_url": "https://github.com/710850609/fpk-smartdns/releases/download/release/47.1-004/smartdns-47.1-004-x86.fpk"
+      },
+      "arm": {
+        "download_url": "https://github.com/710850609/fpk-smartdns/releases/download/release/47.1-004/smartdns-47.1-004-arm.fpk"
+      }
+    }
   },
   "DBland": {
     "display_name": "DBland",
