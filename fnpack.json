@@ -71,10 +71,10 @@
     "changelog": "",
     "arch_diff": {
       "x86": {
-        "download_url": "https://github.com/710850609/fpk-smartdns/releases/download/release/47.1-004/smartdns-47.1-004-x86.fpk"
+        "download_url": "https://github.com/710850609/fpk-smartdns/releases/download/47.1-004/smartdns-47.1-004-x86.fpk"
       },
       "arm": {
-        "download_url": "https://github.com/710850609/fpk-smartdns/releases/download/release/47.1-004/smartdns-47.1-004-arm.fpk"
+        "download_url": "https://github.com/710850609/fpk-smartdns/releases/download/47.1-004/smartdns-47.1-004-arm.fpk"
       }
     }
   },
