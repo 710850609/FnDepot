@@ -1,0 +1,99 @@
+name: Update Version
+
+on:
+  workflow_dispatch:
+    inputs:
+      app_name:
+        description: '应用名'
+        required: true
+      new_version:
+        description: '新版本号'
+        required: true
+      download_url_amd64:
+        description: 'amd64架构下载地址'
+        required: false
+      download_url_aarch64:
+        description: 'aarch64架构下载地址'
+        required: false
+      changelog:
+        description: '更新日志'
+        required: false
+
+jobs:
+  update-fnpack:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup GitHub CLI
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Update fnpack.json
+        run: |
+          if [[ "${{ github.event.inputs.download_url_amd64 }}" == "" && "${{ github.event.inputs.download_url_aarch64 }}" == "" ]]; then
+            echo "amd64架构包下载链接和aarch64架构包下载链接都为空"
+            exit 1
+          fi
+          
+          if [[ cat fnpack.json | jq '.${{ github.event.inputs.app_name }}' ]]; then
+            echo "fnpack.json不存在应用: ${github.event.inputs.app_name}"
+            exit 1
+          fi
+
+          # 更新版本号、更新日志
+          json_content=$(cat fnpack.json | jq --arg package "${{ github.event.inputs.app_name }}" \
+            --arg version "${{ github.event.inputs.new_version }}" \
+            --arg changelog "${{ github.event.inputs.changelog }}" \
+            ' .[$package].version = $version 
+            | .[$package].changelog = $changelog ')
+
+          if [[ "${{ github.event.inputs.download_url_amd64 }}" != "" ]]; then
+            response=$(curl -s -o /dev/null -w "%{http_code}" "${{ github.event.inputs.download_url_amd64 }}")
+            if [[ "$response" != "200" ]]; then
+              echo "amd64架构包下载链接无效(HTTP $response)"
+              exit 1
+            fi
+
+            echo "更新amd64架构包下载链接为: ${{ github.event.inputs.download_url_amd64 }}"
+            json_content=$(echo json_content | jq --arg package "${{ github.event.inputs.app_name }}" \
+            --arg download_url_amd64 "${{ github.event.inputs.download_url_amd64 }}" \
+            ' .[$package].arch_diff //= {} 
+            | .[$package].arch_diff.x86 //= {} 
+            | .[$package].arch_diff.x86.download_url = $download_url_amd64 ')
+          fi
+
+          if [[ "${{ github.event.inputs.download_url_aarch64 }}" != "" ]]; then
+            response=$(curl -s -o /dev/null -w "%{http_code}" "${{ github.event.inputs.download_url_aarch64 }}")
+            if [[ "$response" != "200" ]]; then
+              echo "aarch64架构包下载链接无效(HTTP $response)"
+              exit 1
+            fi
+            
+            echo "更新aarch64架构包下载链接为: ${{ github.event.inputs.download_url_aarch64 }}"
+            json_content=$(echo json_content | jq --arg package "${{ github.event.inputs.app_name }}" \
+            --arg download_url_aarch64 "${{ github.event.inputs.download_url_aarch64 }}" \
+            ' .[$package].arch_diff //= {} 
+            | .[$package].arch_diff.arm //= {} 
+            | .[$package].arch_diff.arm.download_url = $download_url_aarch64 ')
+          fi
+
+          # Write back to file
+          echo "$updated_content" > fnpack.json
+          echo "更新后的 fnpack.json: $(cat fnpack.json)"
+                  
+          # Verify changes
+          echo "Changes made to fnpack.json:"
+          git diff fnpack.json
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "AdGuardHome-github-actions[bot]"
+          git config user.email "AdGuardHome-github-actions[bot]@users.noreply.github.com"
+          git add fnpack.json
+          git commit -m "Update AdGuardHome version to ${{ github.event.inputs.new_version }}"
+          git push origin HEAD:main
