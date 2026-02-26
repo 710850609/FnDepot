@@ -1,0 +1,61 @@
+name: Push FnDepot
+
+on:
+  workflow_dispatch:
+    inputs:
+      new_version:
+        description: '新版本号'
+        required: true
+      changelog:
+        description: '更新日志'
+        required: false
+
+jobs:
+  update-fnpack:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup GitHub CLI
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Update fnpack.json
+        run: |
+          # Read current fnpack.json
+          current_content=$(cat fnpack.json)
+          
+          new_version=${{ github.event.inputs.new_version }}
+          download_url_amd64="https://github.com/710850609/fpk-adguardhome/releases/download/${{ new_version }}/AdGuardHome-${{ new_version }}-x86.fpk"
+          download_url_aarch64="https://github.com/710850609/fpk-adguardhome/releases/download/${{ new_version }}/AdGuardHome-${{ new_version }}-arm.fpk"
+
+          # Update fields using jq
+          cat fnpack.json | jq --arg package "AdGuardHome" \
+            --arg version "${{ new_version }}" \
+            --arg changelog "${{ github.event.inputs.changelog }}" \
+            --arg download_url_amd64 "${{ download_url_amd64 }}" \
+            --arg download_url_aarch64 "${{ download_url_aarch64 }}" \
+            ".[\$package].version = \$version \
+            | .[\$package].download_url = \$download_url_amd64 \
+            | .[\$package].arch_diff.x86.download_url = \$download_url_amd64 \
+            | .[\$package].arch_diff.arm.download_url = \$download_url_aarch64"
+          
+          # Write back to file
+          echo "$updated_content" > fnpack.json
+          echo "更新后的 fnpack.json: $(cat fnpack.json)"
+                  
+          # Verify changes
+          echo "Changes made to fnpack.json:"
+          git diff fnpack.json
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "AdGuardHome-github-actions[bot]"
+          git config user.email "AdGuardHome-github-actions[bot]@users.noreply.github.com"
+          git add fnpack.json
+          git commit -m "Update AdGuardHome version to ${{ github.event.inputs.new_version }}"
+          git push origin HEAD:main

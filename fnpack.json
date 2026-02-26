@@ -22,7 +22,7 @@
         "download_url": "https://github.com/710850609/fpk-adguardhome/releases/latest/download/AdGuardHome-0.107.72-12-x86.fpk",
         "bug_report_url": "https://github.com/710850609/fpk-adguardhome/issues",
         "install_type": "存储空间",
-        "size": "12.4",
+        "size": "12",
         "history": {}
     },
     "TaoSync": {
@@ -35,7 +35,7 @@
         "download_url": "https://github.com/710850609/fpk-TaoSync/releases/latest/download/TaoSync-0.3.2-9-x86.fpk",
         "bug_report_url": "https://github.com/710850609/fpk-TaoSync/issues",
         "install_type": "存储空间",
-        "size": "2.5",
+        "size": "2",
         "history": {}
     },
     "SmartDNS": {
@@ -48,7 +48,7 @@
         "download_url": "https://github.com/710850609/fpk-smartdns/releases/latest/download/smartdns-47.1-004-x86.fpk",
         "bug_report_url": "https://github.com/710850609/fpk-SmartDNS/issues",
         "install_type": "存储空间",
-        "size": "8.6",
+        "size": "8",
         "history": {}
     },
     "DBland": {
@@ -61,7 +61,7 @@
         "download_url": "https://github.com/710850609/fpk-dbland/releases/latest/download/dbland-1.1.1-002-amd64.fpk",
         "bug_report_url": "https://github.com/710850609/fpk-DBland/issues",
         "install_type": "存储空间",
-        "size": "15.67",
+        "size": "15",
         "history": {}
     }
 }
