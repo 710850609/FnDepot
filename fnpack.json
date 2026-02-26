@@ -10,7 +10,16 @@
     "bug_report_url": "https://github.com/710850609/fpk-OpenList/issues",
     "install_type": "存储空间",
     "size": "49",
-    "history": {}
+    "history": {},
+    "changelog": "- 更新OpenList版本",
+    "arch_diff": {
+      "x86": {
+        "download_url": "https://github.com/710850609/fpk-OpenList/releases/download/4.1.10-10/OpenList-4.1.10-10-amd64.fpk"
+      },
+      "arm": {
+        "download_url": "https://github.com/710850609/fpk-OpenList/releases/download/4.1.10-10/OpenList-4.1.10-10-aarch64.fpk"
+      }
+    }
   },
   "AdGuardHome": {
     "display_name": "AdGuardHome",
