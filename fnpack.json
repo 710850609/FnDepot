@@ -10,13 +10,22 @@
     "bug_report_url": "https://github.com/710850609/fpk-OpenList/issues",
     "install_type": "存储空间",
     "size": "49",
-    "history": {}
+    "history": {},
+    "changelog": "- 更新OpenList版本",
+    "arch_diff": {
+      "x86": {
+        "download_url": "https://github.com/710850609/fpk-OpenList/releases/download/4.1.10-10/OpenList-4.1.10-10-amd64.fpk"
+      },
+      "arm": {
+        "download_url": "https://github.com/710850609/fpk-OpenList/releases/download/4.1.10-10/OpenList-4.1.10-10-aarch64.fpk"
+      }
+    }
   },
   "AdGuardHome": {
     "display_name": "AdGuardHome",
     "desc": "免费开源、强大的网络范围广告和跟踪器阻止DNS服务器",
     "labels": "实用效率",
-    "version": "0.107.72-13",
+    "version": "0.107.72-14",
     "author": "BoB",
     "author_url": "https://github.com/710850609",
     "download_url": "https://github.com/710850609/fpk-adguardhome/releases/download/0.107.72-13/AdGuardHome-0.107.72-13-x86.fpk",
@@ -24,13 +33,13 @@
     "install_type": "存储空间",
     "size": "12",
     "history": {},
-    "changelog": "- 修复配置向导的AdGuardHome版本号默认不是当前版本（通过新增更新向导解决）",
+    "changelog": "- 修复：手动修改配置后，更新版本时，保持配置不变\n- 修改：简化更新向导",
     "arch_diff": {
       "x86": {
-        "download_url": "https://github.com/710850609/fpk-adguardhome/releases/download/0.107.72-13/AdGuardHome-0.107.72-13-x86.fpk"
+        "download_url": "https://github.com/710850609/fpk-adguardhome/releases/download/0.107.72-14/AdGuardHome-0.107.72-14-x86.fpk"
       },
       "arm": {
-        "download_url": "https://github.com/710850609/fpk-adguardhome/releases/download/0.107.72-13/AdGuardHome-0.107.72-13-arm.fpk"
+        "download_url": "https://github.com/710850609/fpk-adguardhome/releases/download/0.107.72-14/AdGuardHome-0.107.72-14-arm.fpk"
       }
     }
   },
@@ -45,7 +54,16 @@
     "bug_report_url": "https://github.com/710850609/fpk-TaoSync/issues",
     "install_type": "存储空间",
     "size": "2",
-    "history": {}
+    "history": {},
+    "changelog": "",
+    "arch_diff": {
+      "x86": {
+        "download_url": "https://github.com/710850609/fpk-TaoSync/releases/download/0.3.2-9/TaoSync-0.3.2-9-x86.fpk"
+      },
+      "arm": {
+        "download_url": "https://github.com/710850609/fpk-TaoSync/releases/download/0.3.2-9/TaoSync-0.3.2-9-arm.fpk"
+      }
+    }
   },
   "SmartDNS": {
     "display_name": "SmartDNS",
@@ -58,7 +76,16 @@
     "bug_report_url": "https://github.com/710850609/fpk-SmartDNS/issues",
     "install_type": "存储空间",
     "size": "8",
-    "history": {}
+    "history": {},
+    "changelog": "",
+    "arch_diff": {
+      "x86": {
+        "download_url": "https://github.com/710850609/fpk-smartdns/releases/download/47.1-004/smartdns-47.1-004-x86.fpk"
+      },
+      "arm": {
+        "download_url": "https://github.com/710850609/fpk-smartdns/releases/download/47.1-004/smartdns-47.1-004-arm.fpk"
+      }
+    }
   },
   "DBland": {
     "display_name": "DBland",
