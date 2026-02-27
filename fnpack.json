@@ -77,7 +77,7 @@
     "install_type": "存储空间",
     "size": "8",
     "history": {},
-    "changelog": "",
+    "changelog": "- 修复: 更新应用时不修改配置\n",
     "arch_diff": {
       "x86": {
         "download_url": "https://github.com/710850609/fpk-smartdns/releases/download/47.1-005/smartdns-47.1-005-x86.fpk"
