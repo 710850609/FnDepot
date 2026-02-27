@@ -87,7 +87,7 @@ jobs:
           echo "更新后的 fnpack.json: $(cat fnpack.json)"
                   
           # Verify changes
-          echo "更新fnpack.json:"
+          echo "fnpack.json修改内容:"
           git diff fnpack.json
 
       - name: Commit and push changes
@@ -95,5 +95,11 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add fnpack.json
-          git commit -m "Update version to ${{ github.event.inputs.new_version }}"
-          git push origin HEAD:main
+          # 检查是否有修改
+          if git status --porcelain | grep -q .; then
+            git commit -m "Update version to ${{ github.event.inputs.new_version }}"
+            git push origin HEAD:main
+            echo "Changes committed and pushed"
+          else
+            echo "No changes to commit, skipping push"
+          fi
