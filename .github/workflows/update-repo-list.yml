@@ -1,4 +1,4 @@
-name: Daily Update Repo List
+name: Update Repo List
 
 on:
   schedule:

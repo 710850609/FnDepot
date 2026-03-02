@@ -10,7 +10,10 @@ SUPPORTED_ARCHES=${SUPPORTED_ARCHES:-"x86 arm"}
 
 # 白名单和黑名单（可通过环境变量覆盖）
 WHITELIST=${WHITELIST:-"https://github.com/RROrg/fn-apps"}
-BLACKLIST=${BLACKLIST:-"https://github.com/12hgl/FnDepot https://github.com/FNOSP/FnDepot https://github.com/ByronChen7/FnDepot"}
+BLACKLIST=${BLACKLIST:-"https://github.com/12hgl/FnDepot \
+https://github.com/FNOSP/FnDepot \
+https://github.com/ByronChen7/FnDepot \
+https://github.com/mah1618/FnDepot"}
 
 OUTPUT_FILE="repo_list.txt"
 PAGE=1          # 从第 1 页开始
