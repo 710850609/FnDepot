@@ -14,6 +14,7 @@ BLACKLIST=${BLACKLIST:-"\
 12hgl/FnDepot \
 FNOSP/FnDepot \
 ByronChen7/FnDepot \
+DYXIAOMA/FnDepot \
 mah1618/FnDepot \
 coder23j/FnDepot-arm \
 hw532/FnDepot-arm \
