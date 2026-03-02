@@ -2,7 +2,6 @@ https://github.com/EWEDLCM/FnDepot
 https://github.com/shuangji66/FnDepot
 https://github.com/Hxido-RXM/FnDepot
 https://github.com/moxyis/FnDepot
-https://github.com/FNOSP/FnDepot
 https://github.com/mah1618/FnDepot
 https://github.com/hbestm/FnDepot
 https://github.com/yaya918/FnDepot
@@ -20,9 +19,8 @@ https://github.com/0999we/FnDepot
 https://github.com/Brian099/FnDepot
 https://github.com/ctllo-bit/FnDepot
 https://github.com/siilao/FnDepot
-https://github.com/ByronChen7/FnDepot
 https://github.com/Stranger10086/FnDepot
 https://github.com/DPanel-dev/FnDepot
 https://github.com/slepoh/FnDepot
-https://github.com/12hgl/FnDepot
 https://github.com/boater-man/FnDepot
+https://github.com/RROrg/fn-apps
