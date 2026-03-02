@@ -7,13 +7,18 @@ set -e
 
 # 支持的架构列表（可通过环境变量覆盖）
 SUPPORTED_ARCHES=${SUPPORTED_ARCHES:-"x86 arm"}
+
+# 白名单和黑名单（可通过环境变量覆盖）
+WHITELIST=${WHITELIST:-"https://github.com/RROrg/fn-apps"}
+BLACKLIST=${BLACKLIST:-"https://github.com/12hgl/FnDepot https://github.com/FNOSP/FnDepot https://github.com/ByronChen7/FnDepot"}
+
 OUTPUT_FILE="repo_list.txt"
-> "$OUTPUT_FILE" # 清空旧结果
 PAGE=1          # 从第 1 页开始
 PER_PAGE=100    # 每页条数，最大 100
 
 echo "支持的架构: $SUPPORTED_ARCHES"
 
+> "$OUTPUT_FILE" # 清空旧结果
 while :; do
   echo "==== 拉取第 $PAGE 页 ===="
   # 拉取一页
@@ -101,5 +106,36 @@ while :; do
 done
 
 rm -f page.json
+
+# 处理黑名单和白名单
+if [[ -n "$BLACKLIST" ]]; then
+  echo "应用黑名单过滤..."
+  # 使用简单的方法处理文件，避免使用 mktemp
+  # 先读取文件内容
+  content=$(cat "$OUTPUT_FILE")
+  # 去除黑名单中的仓库
+  for blacklist_item in $BLACKLIST; do
+    if grep -q "$whitelist_item" "$OUTPUT_FILE"; then
+      content=$(echo "$content" | grep -v "$blacklist_item")
+      echo "  ✔ 移除黑名单仓库 $blacklist_item"
+    fi
+  done
+  # 写回文件
+  echo "$content" > "$OUTPUT_FILE"
+fi
+
+if [[ -n "$WHITELIST" ]]; then
+  echo "添加白名单仓库..."
+  # 追加白名单中的仓库
+  for whitelist_item in $WHITELIST; do
+    # 检查白名单仓库是否已经存在
+    if ! grep -q "$whitelist_item" "$OUTPUT_FILE"; then
+      # 已经是完整的 URL，直接使用
+      echo "$whitelist_item" >> "$OUTPUT_FILE"
+      echo "  ✔ 添加白名单仓库 $whitelist_item"
+    fi
+  done
+fi
+
 echo "===== 带 fnpack.json 的 FnDepot 仓库 ====="
 cat "$OUTPUT_FILE"
