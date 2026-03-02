@@ -14,7 +14,11 @@ BLACKLIST=${BLACKLIST:-"\
 12hgl/FnDepot \
 FNOSP/FnDepot \
 ByronChen7/FnDepot \
-mah1618/FnDepot"}
+mah1618/FnDepot \
+coder23j/FnDepot-arm \
+hw532/FnDepot-arm \
+baishicoke/FnDepot-arm \
+"}
 
 OUTPUT_FILE="repo_list.txt"
 OUTPUT_FILE_TEMP="repo_list_temp.txt"
@@ -105,26 +109,10 @@ add_repo() {
 fetch_repo() {
   > "$OUTPUT_FILE_TEMP"
 
-  PAGE=1          # 从第 1 页开始
   PER_PAGE=100    # 每页条数，最大 100
-  echo "开始拉取所有从https://github.com/EWEDLCM/FnDepot仓库fork出来的仓库..."
+  PAGE=1          # 从第 1 页开始
   > page.json
-  while :; do
-    echo "==== 拉取第 $PAGE 页 ===="
-    curl -s "https://api.github.com/search/repositories?q=FnDepot+in:name+fork:true&per_page=$PER_PAGE&page=$PAGE" \
-    > page.json
-    # 如果本页已经没有仓库就退出
-    COUNT=$(jq '.items | length' page.json)
-    [ "$COUNT" -eq 0 ] && break
-    for ((i=0;i<COUNT;i++)); do
-      jq -r ".items[$i].full_name" page.json >> "$OUTPUT_FILE_TEMP"
-    done
-    ((PAGE++))
-  done
-
   echo "开始拉取所有普通仓库..."
-  PAGE=1
-  > page.json
   while :; do
     echo "==== 拉取第 $PAGE 页 ===="
     curl -s "https://api.github.com/search/repositories?q=FnDepot+in:name&per_page=$PER_PAGE&page=$PAGE" \
@@ -136,13 +124,37 @@ fetch_repo() {
       repo=$(jq -r ".items[$i].full_name" page.json)
       if ! grep -q "$repo" "$OUTPUT_FILE_TEMP"; then
         echo "$repo" >> "$OUTPUT_FILE_TEMP"
-        echo "追加仓库：$repo"
+        # echo "追加仓库：$repo"
       # else 
         # echo "跳过追加${repo}仓库： 已存在"
       fi
     done
     ((PAGE++))
   done 
+
+  PAGE=1
+  > page.json
+  echo "开始拉取所有从https://github.com/EWEDLCM/FnDepot仓库fork出来的仓库..."
+  while :; do
+    echo "==== 拉取第 $PAGE 页 ===="
+    curl -s "https://api.github.com/search/repositories?q=FnDepot+in:name+fork:true&per_page=$PER_PAGE&page=$PAGE" \
+    > page.json
+    # 如果本页已经没有仓库就退出
+    COUNT=$(jq '.items | length' page.json)
+    [ "$COUNT" -eq 0 ] && break
+    for ((i=0;i<COUNT;i++)); do
+      repo=$(jq -r ".items[$i].full_name" page.json)
+      if ! grep -q "$repo" "$OUTPUT_FILE_TEMP"; then
+        echo "$repo" >> "$OUTPUT_FILE_TEMP"
+        # echo "追加仓库：$repo"
+      # else 
+        # echo "跳过追加${repo}仓库： 已存在"
+      fi
+    done
+    ((PAGE++))
+  done
+
+  
 
   rm -f page.json
 }
