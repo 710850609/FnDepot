@@ -19,6 +19,7 @@ mah1618/FnDepot \
 coder23j/FnDepot-arm \
 hw532/FnDepot-arm \
 baishicoke/FnDepot-arm \
+hsliuyong/FnDepot2 \
 "}
 
 OUTPUT_FILE="repo_list.txt"
