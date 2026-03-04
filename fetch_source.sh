@@ -21,6 +21,7 @@ hw532/FnDepot-arm \
 baishicoke/FnDepot-arm \
 hsliuyong/* \
 miaomi9/* \
+AKAAKUNLEE/* \
 "}
 
 OUTPUT_FILE="repo_list.txt"
