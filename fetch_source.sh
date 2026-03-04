@@ -19,7 +19,8 @@ mah1618/FnDepot \
 coder23j/FnDepot-arm \
 hw532/FnDepot-arm \
 baishicoke/FnDepot-arm \
-hsliuyong/FnDepot2 \
+hsliuyong/* \
+miaomi9/* \
 "}
 
 OUTPUT_FILE="repo_list.txt"
@@ -156,8 +157,6 @@ fetch_repo() {
     ((PAGE++))
   done
 
-  
-
   rm -f page.json
 }
 
@@ -169,8 +168,10 @@ check_and_add_repo() {
     echo "应用黑名单过滤..."
     # 去除黑名单中的仓库
     for blacklist_item in $BLACKLIST; do
-      if grep -q "$blacklist_item" "$OUTPUT_FILE_TEMP"; then
-        repo_list=$(echo "$repo_list" | grep -v "$blacklist_item")
+      # 转换通配符为正则表达式
+      regex_pattern=$(echo "$blacklist_item" | sed 's/\*/.*/g')
+      if grep -q -E "$regex_pattern" "$OUTPUT_FILE_TEMP"; then
+        repo_list=$(echo "$repo_list" | grep -v -E "$regex_pattern")
         echo "  ✔ 移除黑名单仓库 $blacklist_item"
       fi
     done
