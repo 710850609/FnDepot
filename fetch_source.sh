@@ -15,87 +15,22 @@ BLACKLIST=${BLACKLIST:-"\
 FNOSP/FnDepot \
 ByronChen7/FnDepot \
 DYXIAOMA/FnDepot \
-mah1618/FnDepot \
-coder23j/FnDepot-arm \
-hw532/FnDepot-arm \
-baishicoke/FnDepot-arm \
-hsliuyong/* \
-miaomi9/* \
 AKAAKUNLEE/* \
 Stranger10086/* \
-slepoh/* \
 yuexps/* \
-iherwo/* \
-35655a/* \
-asd1792616127/* \
-zhouStar7/* \
-P-s-moon/* \
-cafecky/* \
-cafecky/* \
-qincw1346/* \
-apigeer/* \
 xuanxiaofeng/* \
-tagma067001068/* \
-helemhu/* \
-aaatechx/* \
-sangxuesheng/* \
-Gao-Yimeng/* \
-thiefjack/* \
 p125141/* \
-wzj939/* \
-ahtian928/* \
-LingYu91/* \
-fantasycat6/* \
-bwing0701/* \
 YingHaoIT/* \
-leonis999/* \
-waiyanhein69/* \
-wildfun/* \
-chunyu-zhou/* \
-bfjy2024/* \
-donglinyin/* \
-leo334455/* \
-Soley911/* \
-qian-1987/* \
 wootor/* \
-JackLu2025/* \
-UCKETX/* \
-nmyahoos/* \
-faa-ink/* \
-qinsijie/* \
-guoguo223226600/* \
-a1060594900/* \
-shengjianmin/* \
 xubillde/* \
-heaven3210/* \
 maliang99/* \
-deanwong25/* \
-lxc763092/* \
-WangLeGeWang/* \
-gzdiky-ui/* \
-JackyD0722/* \
-hepp995/* \
 wtugwyitx/* \
 zhang12345eer/* \
 qq1416567661/* \
 zsferking/* \
-Lucifer9977/* \
-HonghaoLee/* \
-BD7KAS/* \
-qianyianyi/* \
 nbcoming/* \
-ialer/* \
-ganx2024/* \
-ljy147300/* \
-xinghe888/* \
-along1231/* \
-yiyang188/* \
-lwpeng888/* \
-zuohaill/* \
-DongShull/* \
-weber929/* \
-5922096cao-lgtm/* \
-DavidAugust03/* \
+miaomi9/* \
+hsliuyong/* \
 "}
 
 OUTPUT_FILE="repo_list.txt"
@@ -120,20 +55,50 @@ check_repo() {
     
     # 检查是否至少有一个有效应用（有 download_url 或对应 fpk 包）
     has_valid_app=false
+    is_original=true
     
-    for app_name in $app_names; do  
+    RROrg_apps=$(curl -s https://raw.githubusercontent.com/RROrg/fn-apps/refs/heads/main/fnpack.json | jq -r 'keys | join(" ")')
+    shuangji66_apps=$(curl -s https://raw.githubusercontent.com/shuangji66/FnDepot/refs/heads/main/fnpack.json | jq -r 'keys | join(" ")')
+    EWEDLCM_apps=$(curl -s https://raw.githubusercontent.com/EWEDLCM/FnDepot/refs/heads/main/fnpack.json | jq -r 'keys | join(" ")')
+
+    for app_name in $app_names; do
+      echo "  检查应用 $app_name ..."
+      # 如果存在应用 test ，则跳过
+      if [[ "$app_name" == "test" ]]; then
+        is_original=false
+        echo "  ✘ 排除测试仓库：$REPO"
+        break
+      fi
+      # 排除 EWEDLCM/FnDepot 的其他fork仓库
+      if echo "$EWEDLCM_apps" | grep -q "$app_name" && [[ "$REPO" != "EWEDLCM/FnDepot" ]]; then
+        is_original=false
+        echo "  ✘ 排除非原创仓库：$REPO"
+        break
+      fi
+      # 排除 RROrg/fn-apps 的其他fork仓库
+      if echo "$RROrg_apps" | grep -q "$app_name" && [[ "$REPO" != "RROrg/fn-apps" ]]; then
+        is_original=false
+        echo "  ✘ 排除非原创仓库：$REPO"
+        break
+      fi
+      # 排除 shuangji66/FnDepot 的其他fork仓库
+      if echo "$shuangji66_apps" | grep -q "$app_name" && [[ "$REPO" != "shuangji66/FnDepot" ]]; then
+        is_original=false
+        echo "  ✘ 排除非原创仓库：$REPO"
+        break
+      fi
       # 优先检查是否有 arch_diff 中的 download_url
       has_arch_download_url=$(echo "$FNPACK_CONTENT" | jq -r ".[\"$app_name\"].arch_diff != null and (any(.[\"$app_name\"].arch_diff[]; .download_url != null and .download_url != \"\"))" | tr -d '\000')
       # 如果有下载地址或 fpk 包，标记为有效应用
       if [[ "$has_arch_download_url" == "true" ]]; then
         has_valid_app=true
-        break
+        # break
       fi
       # 检查是否有 download_url
       has_download_url=$(echo "$FNPACK_CONTENT" | jq -r ".[\"$app_name\"].download_url != null and .[\"$app_name\"].download_url != \"\"" | tr -d '\000')
       if [[ "$has_download_url" == "true" ]]; then
         has_valid_app=true
-        break
+        # break
       fi
     
       # 检查是否存在对应的 fpk 包（使用 HEAD 请求，只检查响应头）
@@ -153,7 +118,7 @@ check_repo() {
           arch_fpk_status=$(curl -s -o /dev/null -w "%{http_code}" "$arch_fpk_url")
           if [[ "$arch_fpk_status" == "200" ]]; then
             has_fpk_package=true
-            break
+            # break
           fi
         done
       fi
@@ -161,15 +126,15 @@ check_repo() {
       # 如果有下载地址或 fpk 包，标记为有效应用
       if [[ "$has_fpk_package" == "true" ]]; then
         has_valid_app=true
-        break
+        # break
       fi
     done
     
-    if [[ "$has_valid_app" == "true" ]]; then
+    if [[ "$has_valid_app" == "true" && "$is_original" == "true" ]]; then
       echo "  ✔ 存在 fnpack.json 且包含有效应用"
       return 0  # 有效
     else
-      echo "  ✘ 存在 fnpack.json 但无有效应用"
+      echo "  ✘ 存在 fnpack.json 但无有效应用或非原创仓库"
       return 1  # 无效
     fi
   else
@@ -276,7 +241,10 @@ check_and_add_repo() {
 }
 
 # 拉取仓库列表
-fetch_repo
-check_and_add_repo
-echo "===== 带 fnpack.json 的 FnDepot 仓库 ====="
-cat "$OUTPUT_FILE"
+# fetch_repo
+# check_and_add_repo
+# echo "===== 带 fnpack.json 的 FnDepot 仓库 ====="
+# cat "$OUTPUT_FILE"
+
+
+check_repo "HonghaoLee/FnDepot"
