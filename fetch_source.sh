@@ -241,10 +241,7 @@ check_and_add_repo() {
 }
 
 # 拉取仓库列表
-# fetch_repo
-# check_and_add_repo
-# echo "===== 带 fnpack.json 的 FnDepot 仓库 ====="
-# cat "$OUTPUT_FILE"
-
-
-check_repo "HonghaoLee/FnDepot"
+fetch_repo
+check_and_add_repo
+echo "===== 带 fnpack.json 的 FnDepot 仓库 ====="
+cat "$OUTPUT_FILE"
