@@ -28,13 +28,17 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add repo_list.txt
 
-          # 检查是否有修改
-          if git status --porcelain | grep -q .; then          
-            echo "修改内容:"
-            git diff
-            git commit -m "Update repo list"
-            git push origin HEAD:main
-            echo "提交并推送变更repo_list.txt"
+          # 检查是否有实际内容修改（排除权限变化）
+          if git diff --cached --name-only | grep -q .; then
+            if git diff --cached --name-only | grep -v "fetch_source.sh" | grep -q .; then
+              echo "修改内容:"
+              git diff --cached
+              git commit -m "Update repo list"
+              git push origin HEAD:main
+              echo "提交并推送变更repo_list.txt"
+            else
+              echo "只有fetch_source.sh权限变化，跳过推送"
+            fi
           else
-            echo "没有变更repo_list.txt，跳过推送"
+            echo "没有变更，跳过推送"
           fi
