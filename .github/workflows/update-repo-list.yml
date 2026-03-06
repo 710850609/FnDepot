@@ -30,8 +30,8 @@ jobs:
 
           # 检查是否有修改
           if git status --porcelain | grep -q .; then          
-            echo "repo_list.txt修改内容:"
-            git diff repo_list.txt
+            echo "修改内容:"
+            git diff
             git commit -m "Update repo list"
             git push origin HEAD:main
             echo "提交并推送变更repo_list.txt"
