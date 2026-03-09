@@ -91,13 +91,21 @@
     "display_name": "DBland",
     "desc": "Go语言实现的Web版本数据库连接工具，内存占用少，启动快，支持MySQL，Oracle，SQLite等",
     "labels": "开发工具,数据库连接工具",
-    "version": "1.1.1-002",
+    "version": "1.1.1-003",
     "author": "BoB",
     "author_url": "https://github.com/710850609",
-    "download_url": "https://github.com/710850609/fpk-dbland/releases/latest/download/dbland-1.1.1-002-amd64.fpk",
+    "download_url": "https://github.com/710850609/fpk-dbland/releases/download/1.1.1-003/dbland-1.1.1-003-amd64.fpk",
     "bug_report_url": "https://github.com/710850609/fpk-DBland/issues",
     "install_type": "存储空间",
     "size": "15",
-    "history": {}
+    "history": {},
+    "arch_diff": {
+      "x86": {
+        "download_url": "https://github.com/710850609/fpk-dbland/releases/download/1.1.1-003/dbland-1.1.1-003-amd64.fpk"
+      },
+      "arm": {
+        "download_url": "https://github.com/710850609/fpk-dbland/releases/download/1.1.1-003/dbland-1.1.1-003-aarch64.fpk"
+      }
+    }
   }
 }

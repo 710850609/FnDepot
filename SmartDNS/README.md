@@ -4,26 +4,3 @@
 
 <p><a href="https://pymumu.github.io/smartdns">SmartDNS源码</a></p>
 <p><a href="https://qm.qq.com/q/MDHN8GlI4s">加入QQ群聊 767315692 讨论</a></p>
-
-## 更新内容
-### 47.1-004
-- 支持设置是否不使用向导配置
-- 支持设置屏蔽广告
-
-### 47.1-003
-- 支持自定义日志级别设置
-- 优化WebUI前端加载数据
-
-### 47.1-002
-- 修复安装提示创建目录错误
-- 修复UI插件加载不成功，UI无页面
-- 优化图标
-
-### 47.1-001
-- 支持SmartDNS
-- 支持自定义DNS端口
-- 支持自定义WebUI开关
-- 支持自定义WebUI端口
-- 支持自定义WebUI账号
-- 支持自定义WebUI密码
-- 支持自定义SmartDNS使用版本
