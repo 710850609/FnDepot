@@ -5,11 +5,17 @@
 # <a href="https://ecn6sp7e44q3.feishu.cn/wiki/VSrmwqtjhigaygkWkyoceEvvnlb">FnDepot规范文档</a>
 set -e
 
+proxy_url=""
+
 # 支持的架构列表（可通过环境变量覆盖）
 SUPPORTED_ARCHES=${SUPPORTED_ARCHES:-"x86 arm"}
 
 # 白名单和黑名单（可通过环境变量覆盖）
-WHITELIST=${WHITELIST:-"RROrg/fn-apps"}
+WHITELIST=${WHITELIST:-"\
+EWEDLCM/FnDepot \
+RROrg/fn-apps \
+shuangji66/FnDepot \
+jianzhichu/FnDepot"}
 BLACKLIST=${BLACKLIST:-"\
 12hgl/FnDepot \
 FNOSP/FnDepot \
@@ -17,7 +23,7 @@ ByronChen7/FnDepot \
 DYXIAOMA/FnDepot \
 AKAAKUNLEE/* \
 Stranger10086/* \
-yuexps/* \
+# yuexps/* \
 xuanxiaofeng/* \
 p125141/* \
 YingHaoIT/* \
@@ -40,12 +46,37 @@ echo "支持的架构: $SUPPORTED_ARCHES"
 
 > "$OUTPUT_FILE" # 清空旧结果
 
+
+# 声明关联数组，存储原创仓库和应用
+declare -A ORI_REPO_APPS
+for ori_repo in $WHITELIST; do
+  ORI_REPO_APPS[$ori_repo]=$(curl -s ${proxy_url}https://raw.githubusercontent.com/${ori_repo}/refs/heads/main/fnpack.json | jq -r 'keys | join(" ")')
+done
+
+is_ori_repo() {
+  APP_NAME=$1
+  REPO=$2
+  if echo "$WHITELIST" | grep -q "$REPO"; then
+    # echo "  ✔ 原创仓库：$REPO"
+    return 0
+  fi
+  for ori_repo in $WHITELIST; do
+    # echo "检查  $ori_repo : ${ORI_REPO_APPS[$ori_repo]}"
+    if echo "${ORI_REPO_APPS[$ori_repo]}" | grep -q "$APP_NAME" && [[ "$REPO" != "$ori_repo" ]]; then
+      # echo "  ✔ 原创仓库：$ori_repo 包含应用 $APP_NAME"
+      return 1
+    fi
+  done
+  # echo "  ✘ 非原创仓库：$REPO"
+  return 0
+}
+
 check_repo() {
   REPO=$1
   echo "检查 $REPO ..."
 
   # 单个 HTTP 请求获取 fnpack.json 并检查状态码和内容
-  FNPACK_RESPONSE=$(curl -s -w "\n%{http_code}\n" "https://raw.githubusercontent.com/$REPO/main/fnpack.json")
+  FNPACK_RESPONSE=$(curl -s -w "\n%{http_code}\n" "${proxy_url}https://raw.githubusercontent.com/$REPO/main/fnpack.json")
   HTTP_STATUS=$(echo "$FNPACK_RESPONSE" | tail -n 1)
   FNPACK_CONTENT=$(echo "$FNPACK_RESPONSE" | head -n -1)
   
@@ -57,9 +88,10 @@ check_repo() {
     has_valid_app=false
     is_original=true
     
-    RROrg_apps=$(curl -s https://raw.githubusercontent.com/RROrg/fn-apps/refs/heads/main/fnpack.json | jq -r 'keys | join(" ")')
-    shuangji66_apps=$(curl -s https://raw.githubusercontent.com/shuangji66/FnDepot/refs/heads/main/fnpack.json | jq -r 'keys | join(" ")')
-    EWEDLCM_apps=$(curl -s https://raw.githubusercontent.com/EWEDLCM/FnDepot/refs/heads/main/fnpack.json | jq -r 'keys | join(" ")')
+    # RROrg_apps=$(curl -s https://raw.githubusercontent.com/RROrg/fn-apps/refs/heads/main/fnpack.json | jq -r 'keys | join(" ")')
+    # shuangji66_apps=$(curl -s https://raw.githubusercontent.com/shuangji66/FnDepot/refs/heads/main/fnpack.json | jq -r 'keys | join(" ")')
+    # EWEDLCM_apps=$(curl -s https://raw.githubusercontent.com/EWEDLCM/FnDepot/refs/heads/main/fnpack.json | jq -r 'keys | join(" ")')
+    # jianzhichu_apps=$(curl -s https://raw.githubusercontent.com/jianzhichu/FnDepot/refs/heads/main/fnpack.json | jq -r 'keys | join(" ")')
 
     for app_name in $app_names; do
       echo "  检查应用 $app_name ..."
@@ -69,24 +101,33 @@ check_repo() {
         echo "  ✘ 排除测试仓库：$REPO"
         break
       fi
-      # 排除 EWEDLCM/FnDepot 的其他fork仓库
-      if echo "$EWEDLCM_apps" | grep -q "$app_name" && [[ "$REPO" != "EWEDLCM/FnDepot" ]]; then
+      # 排除非原创应用
+      if is_ori_repo "$app_name" "$REPO"; then
+        is_original=true
+      else
         is_original=false
         echo "  ✘ 排除非原创仓库：$REPO"
         break
       fi
-      # 排除 RROrg/fn-apps 的其他fork仓库
-      if echo "$RROrg_apps" | grep -q "$app_name" && [[ "$REPO" != "RROrg/fn-apps" ]]; then
-        is_original=false
-        echo "  ✘ 排除非原创仓库：$REPO"
-        break
-      fi
-      # 排除 shuangji66/FnDepot 的其他fork仓库
-      if echo "$shuangji66_apps" | grep -q "$app_name" && [[ "$REPO" != "shuangji66/FnDepot" ]]; then
-        is_original=false
-        echo "  ✘ 排除非原创仓库：$REPO"
-        break
-      fi
+
+      # # 排除 EWEDLCM/FnDepot 的其他fork仓库
+      # if echo "$EWEDLCM_apps" | grep -q "$app_name" && [[ "$REPO" != "EWEDLCM/FnDepot" ]]; then
+      #   is_original=false
+      #   echo "  ✘ 排除非原创仓库：$REPO"
+      #   break
+      # fi
+      # # 排除 RROrg/fn-apps 的其他fork仓库
+      # if echo "$RROrg_apps" | grep -q "$app_name" && [[ "$REPO" != "RROrg/fn-apps" ]]; then
+      #   is_original=false
+      #   echo "  ✘ 排除非原创仓库：$REPO"
+      #   break
+      # fi
+      # # 排除 shuangji66/FnDepot 的其他fork仓库
+      # if echo "$shuangji66_apps" | grep -q "$app_name" && [[ "$REPO" != "shuangji66/FnDepot" ]]; then
+      #   is_original=false
+      #   echo "  ✘ 排除非原创仓库：$REPO"
+      #   break
+      # fi
       # 优先检查是否有 arch_diff 中的 download_url
       has_arch_download_url=$(echo "$FNPACK_CONTENT" | jq -r ".[\"$app_name\"].arch_diff != null and (any(.[\"$app_name\"].arch_diff[]; .download_url != null and .download_url != \"\"))" | tr -d '\000')
       # 如果有下载地址或 fpk 包，标记为有效应用
@@ -105,7 +146,7 @@ check_repo() {
       has_fpk_package=false
       
       # 检查 {app_name}.fpk
-      fpk_url="https://raw.githubusercontent.com/$REPO/main/$app_name/$app_name.fpk"
+      fpk_url="${proxy_url}https://raw.githubusercontent.com/$REPO/main/$app_name/$app_name.fpk"
       fpk_status=$(curl -s -o /dev/null -w "%{http_code}" "$fpk_url")
       
       if [[ "$fpk_status" == "200" ]]; then
@@ -114,7 +155,7 @@ check_repo() {
         # 如果 {app_name}.fpk 不存在，检查 {app_name}_{arch}.fpk 格式
         check_arches="all ${SUPPORTED_ARCHES}"
         for arch in $check_arches; do
-          arch_fpk_url="https://raw.githubusercontent.com/$REPO/main/$app_name/${app_name}_${arch}.fpk"
+          arch_fpk_url="${proxy_url}https://raw.githubusercontent.com/$REPO/main/$app_name/${app_name}_${arch}.fpk"
           arch_fpk_status=$(curl -s -o /dev/null -w "%{http_code}" "$arch_fpk_url")
           if [[ "$arch_fpk_status" == "200" ]]; then
             has_fpk_package=true
@@ -158,7 +199,7 @@ fetch_repo() {
   echo "开始拉取所有普通仓库..."
   while :; do
     echo "==== 拉取第 $PAGE 页 ===="
-    curl -s "https://api.github.com/search/repositories?q=FnDepot+in:name&per_page=$PER_PAGE&page=$PAGE" \
+    curl -s "${proxy_url}https://api.github.com/search/repositories?q=FnDepot+in:name&per_page=$PER_PAGE&page=$PAGE" \
     > page.json
     # 如果本页已经没有仓库就退出
     COUNT=$(jq '.items | length' page.json)
@@ -180,7 +221,7 @@ fetch_repo() {
   echo "开始拉取所有从https://github.com/EWEDLCM/FnDepot仓库fork出来的仓库..."
   while :; do
     echo "==== 拉取第 $PAGE 页 ===="
-    curl -s "https://api.github.com/search/repositories?q=FnDepot+in:name+fork:true&per_page=$PER_PAGE&page=$PAGE" \
+    curl -s "${proxy_url}https://api.github.com/search/repositories?q=FnDepot+in:name+fork:true&per_page=$PER_PAGE&page=$PAGE" \
     > page.json
     # 如果本页已经没有仓库就退出
     COUNT=$(jq '.items | length' page.json)
@@ -245,3 +286,7 @@ fetch_repo
 check_and_add_repo
 echo "===== 带 fnpack.json 的 FnDepot 仓库 ====="
 cat "$OUTPUT_FILE"
+
+
+
+# is_ori_repo "AdGuardHome" "710850609/FnDepot" && echo "是" || echo "不是"
