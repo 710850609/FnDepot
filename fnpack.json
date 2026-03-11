@@ -25,7 +25,7 @@
     "display_name": "AdGuardHome",
     "desc": "免费开源、强大的网络范围广告和跟踪器阻止DNS服务器",
     "labels": "实用效率",
-    "version": "0.107.72-14",
+    "version": "0.107.73-14",
     "author": "BoB",
     "author_url": "https://github.com/710850609",
     "download_url": "https://github.com/710850609/fpk-adguardhome/releases/download/0.107.72-13/AdGuardHome-0.107.72-13-x86.fpk",
@@ -33,13 +33,13 @@
     "install_type": "存储空间",
     "size": "12",
     "history": {},
-    "changelog": "- 修复：手动修改配置后，更新版本时，保持配置不变\n- 修改：简化更新向导",
+    "changelog": "- 更新AdGuardHome版本",
     "arch_diff": {
       "x86": {
-        "download_url": "https://github.com/710850609/fpk-adguardhome/releases/download/0.107.72-14/AdGuardHome-0.107.72-14-x86.fpk"
+        "download_url": "https://github.com/710850609/fpk-adguardhome/releases/download/0.107.73-14/AdGuardHome-0.107.73-14-x86.fpk"
       },
       "arm": {
-        "download_url": "https://github.com/710850609/fpk-adguardhome/releases/download/0.107.72-14/AdGuardHome-0.107.72-14-arm.fpk"
+        "download_url": "https://github.com/710850609/fpk-adguardhome/releases/download/0.107.73-14/AdGuardHome-0.107.73-14-arm.fpk"
       }
     }
   },
