@@ -286,7 +286,3 @@ fetch_repo
 check_and_add_repo
 echo "===== 带 fnpack.json 的 FnDepot 仓库 ====="
 cat "$OUTPUT_FILE"
-
-
-
-# is_ori_repo "AdGuardHome" "710850609/FnDepot" && echo "是" || echo "不是"
