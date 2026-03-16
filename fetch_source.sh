@@ -23,7 +23,7 @@ ByronChen7/FnDepot \
 DYXIAOMA/FnDepot \
 AKAAKUNLEE/* \
 Stranger10086/* \
-# yuexps/* \
+yuexps/* \
 xuanxiaofeng/* \
 p125141/* \
 YingHaoIT/* \
