@@ -36,6 +36,7 @@ zsferking/* \
 nbcoming/* \
 miaomi9/* \
 hsliuyong/* \
+yuexps/* \
 "}
 
 OUTPUT_FILE="repo_list.txt"
