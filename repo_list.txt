@@ -22,4 +22,5 @@ https://github.com/magiccode1412/FnDepot
 https://github.com/fyzhu/FnDepot
 https://github.com/boater-man/FnDepot
 https://github.com/DPanel-dev/FnDepot
+https://github.com/yuexps/FnDepot
 https://github.com/RROrg/fn-apps
