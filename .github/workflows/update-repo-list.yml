@@ -2,8 +2,8 @@ name: Update Repo List
 
 on:
   schedule:
-    # 每天每 3 小时执行一次
-    - cron: '0 */3 * * *'
+    # 每天 19 点执行一次（东八区3点）
+    - cron: '0 19 * * *'
   workflow_dispatch:
     # 允许手动触发:
 
