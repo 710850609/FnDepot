@@ -5,12 +5,7 @@ on:
     # 每天每 3 小时执行一次
     - cron: '0 */3 * * *'
   workflow_dispatch:
-    # 允许手动触发env:
-
-# 当前是使用Node.js 20
-# 从2026年6月2日开始，默认情况下，actions/checkout@v4 操作将强制与Node.js 24一起运行    
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    # 允许手动触发:
 
 jobs:
   update-repo-list:
@@ -25,7 +20,8 @@ jobs:
         run: chmod +x fetch_source.sh
 
       - name: 执行脚本
-        run: ./fetch_source.sh
+        # sleep 0.1 s，避免 github api 限制导致的请求失败
+        run: ./fetch_source.sh github_api_sleep=0.1
 
       - name: 提交并推送变更
         run: |
