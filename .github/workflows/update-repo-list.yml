@@ -5,7 +5,12 @@ on:
     # 每天每 3 小时执行一次
     - cron: '0 */3 * * *'
   workflow_dispatch:
-    # 允许手动触发
+    # 允许手动触发env:
+
+# 当前是使用Node.js 20
+# 从2026年6月2日开始，默认情况下，actions/checkout@v4 操作将强制与Node.js 24一起运行    
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   update-repo-list:

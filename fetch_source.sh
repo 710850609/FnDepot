@@ -5,6 +5,19 @@
 # <a href="https://ecn6sp7e44q3.feishu.cn/wiki/VSrmwqtjhigaygkWkyoceEvvnlb">FnDepot规范文档</a>
 set -e
 
+declare -A PARAMS
+# 解析 key=value 格式的参数
+for arg in "$@"; do
+  if [[ "$arg" == *=* ]]; then
+    key="${arg%%=*}"
+    value="${arg#*=}"
+    PARAMS["$key"]="$value"
+  fi
+done
+# github_api请求时，睡眠时间
+github_api_sleep=${PARAMS[github_api_sleep]:-0}
+echo "github api请求时，睡眠时间: $github_api_sleep s"
+
 proxy_url=""
 
 # 支持的架构列表（可通过环境变量覆盖）
@@ -75,6 +88,9 @@ check_repo() {
   REPO=$1
   echo "检查 $REPO ..."
 
+  if awk "BEGIN {exit !($github_api_sleep > 0)}"; then
+    sleep $github_api_sleep
+  fi
   # 单个 HTTP 请求获取 fnpack.json 并检查状态码和内容
   FNPACK_RESPONSE=$(curl -s -w "\n%{http_code}\n" "${proxy_url}https://raw.githubusercontent.com/$REPO/main/fnpack.json")
   HTTP_STATUS=$(echo "$FNPACK_RESPONSE" | tail -n 1)
@@ -145,6 +161,9 @@ check_repo() {
       # 检查是否存在对应的 fpk 包（使用 HEAD 请求，只检查响应头）
       has_fpk_package=false
       
+      if awk "BEGIN {exit !($github_api_sleep > 0)}"; then
+        sleep $github_api_sleep
+      fi
       # 检查 {app_name}.fpk
       fpk_url="${proxy_url}https://raw.githubusercontent.com/$REPO/main/$app_name/$app_name.fpk"
       fpk_status=$(curl -s -o /dev/null -w "%{http_code}" "$fpk_url")
@@ -155,6 +174,9 @@ check_repo() {
         # 如果 {app_name}.fpk 不存在，检查 {app_name}_{arch}.fpk 格式
         check_arches="all ${SUPPORTED_ARCHES}"
         for arch in $check_arches; do
+          if awk "BEGIN {exit !($github_api_sleep > 0)}"; then
+            sleep $github_api_sleep
+          fi
           arch_fpk_url="${proxy_url}https://raw.githubusercontent.com/$REPO/main/$app_name/${app_name}_${arch}.fpk"
           arch_fpk_status=$(curl -s -o /dev/null -w "%{http_code}" "$arch_fpk_url")
           if [[ "$arch_fpk_status" == "200" ]]; then
@@ -199,6 +221,11 @@ fetch_repo() {
   echo "开始拉取所有普通仓库..."
   while :; do
     echo "==== 拉取第 $PAGE 页 ===="
+    if awk "BEGIN {exit !($github_api_sleep > 0)}"; then
+      # echo $(date +"%Y%m%d-%H%M%S%3N")
+      sleep $github_api_sleep
+      # echo $(date +"%Y%m%d-%H%M%S%3N")
+    fi
     curl -s "${proxy_url}https://api.github.com/search/repositories?q=FnDepot+in:name&per_page=$PER_PAGE&page=$PAGE" \
     > page.json
     # 如果本页已经没有仓库就退出
@@ -221,6 +248,9 @@ fetch_repo() {
   echo "开始拉取所有从https://github.com/EWEDLCM/FnDepot仓库fork出来的仓库..."
   while :; do
     echo "==== 拉取第 $PAGE 页 ===="
+    if awk "BEGIN {exit !($github_api_sleep > 0)}"; then
+      sleep $github_api_sleep
+    fi
     curl -s "${proxy_url}https://api.github.com/search/repositories?q=FnDepot+in:name+fork:true&per_page=$PER_PAGE&page=$PAGE" \
     > page.json
     # 如果本页已经没有仓库就退出
