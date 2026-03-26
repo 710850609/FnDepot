@@ -17,11 +17,11 @@ jobs:
           fetch-depth: 1
 
       - name: 确保存在执行脚本
-        run: chmod +x fetch_source.sh
+        run: chmod +x sources/fetch_source.sh
 
       - name: 执行脚本
         # sleep 0.1 s，避免 github api 限制导致的请求失败
-        run: ./fetch_source.sh github_api_sleep=0.1
+        run: ./sources/fetch_source.sh github_api_sleep=0.1
 
       - name: 提交并推送变更
         run: |
