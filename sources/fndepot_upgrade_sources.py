@@ -21,14 +21,20 @@ def setup_proxy():
     with sqlite3.connect(db_path) as conn:
         cursor = conn.cursor()
         setting = querySql(cursor, "SELECT value FROM settings where key=?", ('http_proxy_enabled',))
-        http_proxy_enabled = json.loads(setting[0][0])
+        http_proxy_enabled = False
+        if (setting and setting[0] and setting[0][0]):
+            http_proxy_enabled = json.loads(setting[0] or setting[0][0])
         if (http_proxy_enabled):
             print(f"用户开启了http代理，跳过设置GitHub加速地址")
             return 
         setting = querySql(cursor, "SELECT value FROM settings where key=?", ('github_proxy_enabled',))      
-        github_proxy_enabled = json.loads(setting[0][0])
+        github_proxy_enabled = False
+        if (setting and setting[0] and setting[0][0]):
+            github_proxy_enabled = json.loads(setting[0][0])
         setting = querySql(cursor, "SELECT value FROM settings where key=?", ('github_proxy_url',))      
-        github_proxy_url = setting[0][0]
+        github_proxy_url = ''
+        if (setting and setting[0] and setting[0][0]):
+            github_proxy_url = setting[0][0]
         if (github_proxy_enabled and ('http' in github_proxy_url)):
             print(f"用户已设置GitHub加速地址，跳过设置")
             return        
@@ -61,6 +67,8 @@ def upgrade_sources():
             name = path_segments[0] if path_segments else ''
             cursor.execute("INSERT OR IGNORE INTO sources (url, name, is_default, is_builtin, priority, sync_status, last_sync, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", (line, name, False, False, '100', 'synced', None, now, now,))
             insertCount += cursor.rowcount
+            if (insertCount > 0):
+                print(f"添加源: {line}")
     print(f"更新了 {insertCount} 条源")
 
 if __name__ == "__main__":
