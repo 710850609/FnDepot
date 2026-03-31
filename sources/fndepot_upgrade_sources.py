@@ -1,9 +1,12 @@
+""" 版本V3 """
 import sqlite3
 import urllib.request
 import urllib.parse
 from datetime import datetime
 import json
 
+# github 加速地址
+proxy_url = "https://ghfast.top"
 db_path='/var/apps/fndepot/var/fndepot.db'
 
 def querySql(cursor, sql, params):
@@ -23,7 +26,7 @@ def setup_proxy():
         setting = querySql(cursor, "SELECT value FROM settings where key=?", ('http_proxy_enabled',))
         http_proxy_enabled = False
         if (setting and setting[0] and setting[0][0]):
-            http_proxy_enabled = json.loads(setting[0] or setting[0][0])
+            http_proxy_enabled = json.loads(setting[0][0])
         if (http_proxy_enabled):
             print(f"用户开启了http代理，跳过设置GitHub加速地址")
             return 
@@ -51,7 +54,6 @@ def upgrade_sources():
         conn.row_factory = sqlite3.Row
         cursor = conn.cursor()
         # 从GitHub获取最新sources
-        proxy_url = "https://ghfast.top"
         url = f"{proxy_url}/https://raw.githubusercontent.com/710850609/FnDepot/refs/heads/main/repo_list.txt"
         response = urllib.request.urlopen(url)
         data = response.read().decode('utf-8')
