@@ -109,14 +109,14 @@
     }
   },
   "EasyTier-Lite": {
-    "version": "0.1.020500",
-    "changelog": "- 初步",
+    "version": "0.2.020500",
+    "changelog": "- 修复：编辑配置文件删减选项后，未保存生效的问题\n- 修复：节点列表中，协议过长显示不全的问题\n- 新增：可视化配置TUN接口名称\n- 新增：可视化配置TUN接口名称\n- 新增：可视化配置MTU\n",
     "arch_diff": {
       "x86": {
-        "download_url": "https://github.com/710850609/fpk-EasyTier-Lite/releases/download/0.1.020500/EasyTier-Lite-x86_64-0.1.020500.fpk"
+        "download_url": "https://github.com/710850609/fpk-EasyTier-Lite/releases/download/0.2.020500/EasyTier-Lite-x86_64-0.2.020500.fpk"
       },
       "arm": {
-        "download_url": "https://github.com/710850609/fpk-EasyTier-Lite/releases/download/0.1.020500/EasyTier-Lite-aarch64-0.1.020500.fpk"
+        "download_url": "https://github.com/710850609/fpk-EasyTier-Lite/releases/download/0.2.020500/EasyTier-Lite-aarch64-0.2.020500.fpk"
       }
     }
   }
