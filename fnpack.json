@@ -107,5 +107,17 @@
         "download_url": "https://github.com/710850609/fpk-dbland/releases/download/1.1.1-003/dbland-1.1.1-003-aarch64.fpk"
       }
     }
+  },
+  "EasyTier-Lite": {
+    "version": "0.1.020500",
+    "changelog": "- 初步",
+    "arch_diff": {
+      "x86": {
+        "download_url": "https://github.com/710850609/fpk-EasyTier-Lite/releases/download/0.1.020500/EasyTier-Lite-x86_64-0.1.020500.fpk"
+      },
+      "arm": {
+        "download_url": "https://github.com/710850609/fpk-EasyTier-Lite/releases/download/0.1.020500/EasyTier-Lite-aarch64-0.1.020500.fpk"
+      }
+    }
   }
 }
