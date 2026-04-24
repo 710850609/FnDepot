@@ -28,7 +28,11 @@ WHITELIST=${WHITELIST:-"\
 EWEDLCM/FnDepot \
 RROrg/fn-apps \
 shuangji66/FnDepot \
-jianzhichu/FnDepot"}
+jianzhichu/FnDepot \
+yuexps/FnDepot \
+"}
+
+
 BLACKLIST=${BLACKLIST:-"\
 12hgl/FnDepot \
 FNOSP/FnDepot \
@@ -49,7 +53,10 @@ zsferking/* \
 nbcoming/* \
 miaomi9/* \
 hsliuyong/* \
-yuexps/* \
+15064187978/* \
+jankxia/* \
+henry-hub/* \
+xiaoliang2012/* \
 "}
 
 OUTPUT_FILE="repo_list.txt"
