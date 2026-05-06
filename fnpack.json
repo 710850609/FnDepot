@@ -33,7 +33,7 @@
     "install_type": "存储空间",
     "size": "12",
     "history": {},
-    "changelog": "详见 [CHANGELOG.md](./CHANGELOG.md)",
+    "changelog": "- 更新AdGuardHome版本",
     "arch_diff": {
       "x86": {
         "download_url": "https://github.com/710850609/fpk-adguardhome/releases/download/0.107.74-15/AdGuardHome-0.107.74-15-x86.fpk"
