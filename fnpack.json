@@ -65,7 +65,7 @@
       }
     }
   },
-  "SmartDNS": {
+  "smartdns": {
     "display_name": "SmartDNS",
     "desc": "SmartDNS是一个开源的DNS服务器，用于加速和优化网络访问。",
     "labels": "实用效率",
