@@ -30,6 +30,7 @@ RROrg/fn-apps \
 shuangji66/FnDepot \
 jianzhichu/FnDepot \
 yuexps/FnDepot \
+hbestm/FnDepot \
 "}
 
 
