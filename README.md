@@ -15,6 +15,7 @@ FnDepot 是运行于 FNOS（飞牛OS）上的去中心化第三方应用管理�
 | [TaoSync](TaoSync/) | 适用于 OpenList/AList v3+ 的自动化同步工具 | 0.3.2-9 |
 | [SmartDNS](SmartDNS/) | 开源DNS服务器，用于加速和优化网络访问 | 48.2-006 |
 | [DBland](DBland/) | Go语言实现的Web版本数据库连接工具，支持MySQL、Oracle、SQLite | 1.1.1-003 |
+| [EasyTier-EUI](EasyTier-EUI/) | 简化使用EasyTier的一种UI界面，快速组网 | 1.2.020604-20260626165647 |
 
 ## fnpack.json 元数据规范
 
