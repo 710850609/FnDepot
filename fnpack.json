@@ -112,7 +112,7 @@
     "display_name": "EasyTier-EUI",
     "desc": "简化使用EasyTier的一种UI界面，快速组网",
     "labels": "实用效率",
-    "version": "1.2.020604-20260626165647",
+    "version": "1.3.020604",
     "author": "BoB",
     "author_url": "https://github.com/710850609",
     "download_url": "https://github.com/710850609/EasyTier-EUI/releases/download/1.2.020604-20260626165647/EasyTier-EUI-fnos-x86_64-1.2.020604-20260626165647.fpk",
@@ -122,13 +122,14 @@
     "history": {},
     "arch_diff": {
       "x86": {
-        "download_url": "https://github.com/710850609/EasyTier-EUI/releases/download/1.2.020604-20260626165647/EasyTier-EUI-fnos-x86_64-1.2.020604-20260626165647.fpk",
+        "download_url": "https://github.com/710850609/EasyTier-EUI/releases/download/1.3.020604/EasyTier-EUI-fnos-x86_64-1.3.020604.fpk",
         "size": "9"
       },
       "arm": {
-        "download_url": "https://github.com/710850609/EasyTier-EUI/releases/download/1.2.020604-20260626165647/EasyTier-EUI-fnos-aarch64-1.2.020604-20260626165647.fpk",
+        "download_url": "https://github.com/710850609/EasyTier-EUI/releases/download/1.3.020604/EasyTier-EUI-fnos-aarch64-1.3.020604.fpk",
         "size": "11"
       }
-    }
+    },
+    "changelog": "- 优化：【应用-Linux】使用简介文案，减少歧义误解 - 优化：【应用-IOS】使用简介文案，减少歧义误解 - 优化：【配置】高级设置，【子网代理】增加 CIDR 前缀24长度类型选项 - 修复：【应用-Linux】armv7识别架构错误，下载失败问题，支持版本过低问题 - 新增：【配置】增加支持UI配置【延迟P2P】、【需要P2P】、【socks5端口】、【出口节点】、【实际接收限速】、【端口转发】。独立【代理与转发】新模块 ---- - 优化：【设置】安装升级易组网过程，不停止EasyTier服务，避免组网中断 ---- - 优化：易组网Linux x86_64版本，支持glibc2.28及其以上版本 - 优化：【配置】分享网络，仅导出必要的组网配置 - 优化：提高应用图标清晰度 - 修复：【配置】删除多余的【使用用户态协议栈】选项 - 新增：【配置】增加【禁用UPnP】选项"
   }
 }
