@@ -87,7 +87,7 @@
 
 | 节点管理 | 配置管理 |
 |----------|----------|
-| ![节点管理](https://raw.githubusercontent.com/710850609/EasyTier-EUI/main/assets/assets/nodes-pc1.png) | ![配置管理](https://raw.githubusercontent.com/710850609/EasyTier-EUI/main/assets/assets/config-pc3.png) |
+| ![节点管理](https://raw.githubusercontent.com/710850609/EasyTier-EUI/main/assets/nodes-pc1.png) | ![配置管理](https://raw.githubusercontent.com/710850609/EasyTier-EUI/main/assets/config-pc3.png) |
 | ![节点管理](https://raw.githubusercontent.com/710850609/EasyTier-EUI/main/assets/nodes-pc2.png) | ![配置管理](https://raw.githubusercontent.com/710850609/EasyTier-EUI/main/assets/config-pc1.png) |
 
 | 配置管理 | 应用下载 |
@@ -139,7 +139,7 @@
 如果这个项目对你有帮助，欢迎 **Star ⭐** 或是 赞赏 支持！
 
 <p align="center">
-  <img src="frontend/public/images/reward_code.jpg" width="200" />
+  <img src="https://raw.githubusercontent.com/710850609/EasyTier-EUI/main/frontend/public/images/reward_code.jpg" width="200" />
 </p>
 
 ## 开源协议
