@@ -87,30 +87,30 @@
 
 | 节点管理 | 配置管理 |
 |----------|----------|
-| ![节点管理](https://raw.githubusercontent.com/710850609/EasyTier-EUI/main/nodes-pc1.png) | ![配置管理](https://raw.githubusercontent.com/710850609/EasyTier-EUI/main/config-pc3.png) |
-| ![节点管理](https://raw.githubusercontent.com/710850609/EasyTier-EUI/main/nodes-pc2.png) | ![配置管理](https://raw.githubusercontent.com/710850609/EasyTier-EUI/main/config-pc1.png) |
+| ![节点管理](https://raw.githubusercontent.com/710850609/EasyTier-EUI/main/assets/assets/nodes-pc1.png) | ![配置管理](https://raw.githubusercontent.com/710850609/EasyTier-EUI/main/assets/assets/config-pc3.png) |
+| ![节点管理](https://raw.githubusercontent.com/710850609/EasyTier-EUI/main/assets/nodes-pc2.png) | ![配置管理](https://raw.githubusercontent.com/710850609/EasyTier-EUI/main/assets/config-pc1.png) |
 
 | 配置管理 | 应用下载 |
 |----------|----------|
-| ![配置管理](https://raw.githubusercontent.com/710850609/EasyTier-EUI/main/config-pc2.png) | ![应用下载](https://raw.githubusercontent.com/710850609/EasyTier-EUI/main/download-pc1.png) |
+| ![配置管理](https://raw.githubusercontent.com/710850609/EasyTier-EUI/main/assets/config-pc2.png) | ![应用下载](https://raw.githubusercontent.com/710850609/EasyTier-EUI/main/assets/download-pc1.png) |
 
 | 设置 |
 |------|
-| ![设置](https://raw.githubusercontent.com/710850609/EasyTier-EUI/main/setting-pc1.png) |
+| ![设置](https://raw.githubusercontent.com/710850609/EasyTier-EUI/main/assets/setting-pc1.png) |
 
 ### 小屏界面
 
 | 节点管理 | 节点管理 | 配置管理 |
 |----------|----------|----------|
-| ![节点管理](https://raw.githubusercontent.com/710850609/EasyTier-EUI/main/nodes-m1.png) | ![节点管理](https://raw.githubusercontent.com/710850609/EasyTier-EUI/main/nodes-m2.png) | ![配置管理](https://raw.githubusercontent.com/710850609/EasyTier-EUI/main/config-m1.png) |
+| ![节点管理](https://raw.githubusercontent.com/710850609/EasyTier-EUI/main/assets/nodes-m1.png) | ![节点管理](https://raw.githubusercontent.com/710850609/EasyTier-EUI/main/assets/nodes-m2.png) | ![配置管理](https://raw.githubusercontent.com/710850609/EasyTier-EUI/main/assets/config-m1.png) |
 
 | 配置管理 | 配置管理 |
 |----------|----------|
-| ![配置管理](https://raw.githubusercontent.com/710850609/EasyTier-EUI/main/config-m2.png) | ![配置管理](https://raw.githubusercontent.com/710850609/EasyTier-EUI/main/config-m3.png) |
+| ![配置管理](https://raw.githubusercontent.com/710850609/EasyTier-EUI/main/assets/config-m2.png) | ![配置管理](https://raw.githubusercontent.com/710850609/EasyTier-EUI/main/assets/config-m3.png) |
 
 | 应用下载                            | 设置 |
 |---------------------------------|------|
-| ![应用下载](https://raw.githubusercontent.com/710850609/EasyTier-EUI/main/download-m1.png) | ![设置](https://raw.githubusercontent.com/710850609/EasyTier-EUI/main/setting-m1.png) |
+| ![应用下载](https://raw.githubusercontent.com/710850609/EasyTier-EUI/main/assets/download-m1.png) | ![设置](https://raw.githubusercontent.com/710850609/EasyTier-EUI/main/assets/setting-m1.png) |
 
 ## 技术栈
 
