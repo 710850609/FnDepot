@@ -131,5 +131,27 @@
       }
     },
     "changelog": "- 优化：GitHub资源下载，优化识别处理加速地址返回HTTP状态码 567，导致下载失败情况\n- 优化：UI视觉效果，更通透\n- 优化：【配置】页面移动端适配\n----\n- 优化：【配置】页面新增模式关闭逻辑，避免误操作引起报错\n- 优化：【节点】页面移动端自适应，默认卡片列表显示，可手动切换到表格显示\n- 优化：前端页面显示存储KEY，从etLite改为eui，废弃旧命名，避免歧义。界面会重置默认渲染样式，重新设置即可\n- 优化：【节点】页面弹出选择项中，【列选择】改名【数据项选择】避免误解\n----\n- 优化：飞牛系用户版，改名：易组网(残血版)，避免用户误解\n- 优化：【应用】中各官方应用，最新版 改为 预发版\n- 优化：【应用-FnOS】 aarch64 按钮，改名 arm64 ，方便更多人理解\n----\n- 优化：【配置】中编辑文件页面更通透，优化渲染字体，尽量更符合编码视觉习惯，易区分易混淆字符，如：0Ol1\n- 优化：【节点】页面延迟时间显示，增加颜色提示，方便用户判断网络延迟是否正常"
+  },
+  "fndepot.source": {
+    "display_name": "FnDepot应用源",
+    "desc": "自动拉取GitHub上符合FnDepot商店规范的应用源、加速地址，并注入FnDepot商店",
+    "labels": "实用效率",
+    "version": "0.0.1",
+    "author": "BoB",
+    "author_url": "https://github.com/710850609",
+    "bug_report_url": "https://github.com/710850609/FnDepot/issues",
+    "install_type": "存储空间",
+    "history": {},
+    "arch_diff": {
+      "x86": {
+        "download_url": "https://github.com/710850609/FnDepot/releases/download/20260707/fndepot.source-x86_64-0.0.1.fpk",
+        "size": "0.3"
+      },
+      "arm": {
+        "download_url": "https://github.com/710850609/FnDepot/releases/download/20260707/fndepot.source-aarch64-0.0.1.fpk",
+        "size": "0.3"
+      }
+    },
+    "changelog": ""
   }
 }
