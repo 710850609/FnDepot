@@ -1,0 +1,14 @@
+appname               = fndepot.source
+version=0.0.1
+display_name          = FnDepot应用源
+desc                  = `自动拉取GitHub上符合FnDepot商店规范的应用源，并注入FnDepot商店</br></br><a target="_blank" href="/cgi/ThirdParty/fndepot.source/index.cgi">Web访问地址</a>`
+platform=riscv64
+os_min_version=1.0.0
+source                = thirdparty
+maintainer            = BoB
+maintainer_url        = https://github.com/710850609/FnDepot
+distributor           = BoB
+distributor_url       = https://club.fnnas.com/home.php?mod=space&uid=33130&do=thread&view=me&from=space
+desktop_uidir         = ui
+desktop_applaunchname = fndepot.source.Application
+changelog             = ``

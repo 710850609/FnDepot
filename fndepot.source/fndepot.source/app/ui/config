@@ -1,0 +1,14 @@
+{
+    ".url": {
+        "fndepot.source.Application": {
+            "title": "Depot应用源",
+            "icon": "images/icon_{0}.png",
+            "type": "iframe",
+            "url": "/cgi/ThirdParty/fndepot.source/index.cgi",
+            "allUsers": false,
+            "control": {
+                "accessPerm": "editable",
+            }
+        }
+    }
+}

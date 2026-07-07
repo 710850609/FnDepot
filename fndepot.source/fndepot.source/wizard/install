@@ -1,0 +1,15 @@
+[
+    {
+        "stepTitle": "欢迎安装",
+        "items": [
+            {
+                "type": "tips",
+                "helpText": "欢迎安装使用FnDepot应用源，方便使用FnDepot的商店，免去找应用源、添加应用源"
+            },
+            {
+                "type": "tips",
+                "helpText": "应用以root权限运行，以自动注入源"
+            }
+        ]
+    }
+]

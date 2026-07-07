@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Depot应用源</title>
+  <script>
+    (function () {
+      var theme = localStorage.getItem('fndepot_theme') || 'system';
+      if (theme === 'system') {
+        theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+  <style>
+    /* ========== CSS 变量：亮色主题 ========== */
+    :root {
+      --bg-primary: #ffffff;
+      --bg-secondary: #f5f5f5;
+      --bg-tertiary: #e8e8e8;
+      --text-primary: #1a1a1a;
+      --text-secondary: #666666;
+      --border-color: #d9d9d9;
+      --accent: #1677ff;
+      --accent-hover: #4096ff;
+      --log-bg: #1e1e1e;
+      --log-text: #d4d4d4;
+      --log-border: #333333;
+      --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      --input-bg: #ffffff;
+      --btn-bg: #f0f0f0;
+      --btn-hover-bg: #e0e0e0;
+      --card-bg: #ffffff;
+    }
+
+    /* ========== CSS 变量：暗黑主题 ========== */
+    [data-theme="dark"] {
+      --bg-primary: #141414;
+      --bg-secondary: #1f1f1f;
+      --bg-tertiary: #2a2a2a;
+      --text-primary: #e8e8e8;
+      --text-secondary: #999999;
+      --border-color: #3a3a3a;
+      --accent: #1677ff;
+      --accent-hover: #4096ff;
+      --log-bg: #0d0d0d;
+      --log-text: #c0c0c0;
+      --log-border: #2a2a2a;
+      --shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      --input-bg: #2a2a2a;
+      --btn-bg: #2a2a2a;
+      --btn-hover-bg: #3a3a3a;
+      --card-bg: #1f1f1f;
+    }
+
+    /* ========== 全局样式 ========== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background-color: var(--bg-secondary);
+      color: var(--text-primary);
+      transition: background-color 0.3s, color 0.3s;
+      min-height: 100vh;
+    }
+
+    #app {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    [v-cloak] {
+      display: none !important;
+    }
+
+    /* ========== 顶部设置区 ========== */
+    .settings-bar {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 20px 24px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+      border: 1px solid var(--border-color);
+    }
+
+    .settings-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .settings-group-end {
+      margin-left: auto;
+    }
+
+    .settings-label {
+      font-size: 14px;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+
+    .settings-bar select,
+    .settings-bar input {
+      padding: 6px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      background: var(--input-bg);
+      color: var(--text-primary);
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+      height: 40px;
+      box-sizing: border-box;
+    }
+
+    .settings-bar select:focus,
+    .settings-bar input:focus {
+      border-color: var(--accent);
+    }
+
+    .settings-bar input[type="number"] {
+      width: 70px;
+      text-align: center;
+    }
+
+    .btn {
+      padding: 6px 16px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      background: var(--btn-bg);
+      color: var(--text-primary);
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    .btn:hover {
+      background: var(--btn-hover-bg);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      border-color: var(--accent-hover);
+    }
+
+    .btn-danger {
+      background: #ff4d4f;
+      color: #fff;
+      border-color: #ff4d4f;
+    }
+
+    .btn-danger:hover {
+      background: #ff7875;
+      border-color: #ff7875;
+    }
+
+    .btn-sm {
+      padding: 4px 10px;
+      font-size: 12px;
+    }
+
+    .divider {
+      width: 1px;
+      height: 24px;
+      background: var(--border-color);
+      margin: 0 4px;
+    }
+
+    /* ========== 主题图标按钮 ========== */
+    .theme-btn-group {
+      display: flex;
+      gap: 2px;
+      background: var(--bg-tertiary);
+      border-radius: 8px;
+      padding: 3px;
+    }
+
+    .theme-btn {
+      width: 34px;
+      height: 34px;
+      border: none;
+      border-radius: 6px;
+      background: transparent;
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      position: relative;
+      outline: none;
+    }
+
+    .theme-btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 1px;
+    }
+
+    .theme-btn:hover {
+      color: var(--text-primary);
+      background: var(--btn-hover-bg);
+    }
+
+    .theme-btn.active {
+      background: var(--card-bg);
+      color: var(--accent);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    }
+
+    .theme-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .store-link {
+      display: inline-flex;
+      align-items: center;
+      height: 40px;
+      box-sizing: border-box;
+      padding: 0 14px;
+      border: none;
+      border-radius: 6px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+
+    .store-link:hover {
+      background: var(--accent-hover);
+      color: #fff;
+    }
+
+    /* ========== 日志显示区 ========== */
+    .log-section {
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 300px;
+    }
+
+    .log-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border-color);
+      background: var(--bg-tertiary);
+    }
+
+    .log-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .refresh-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border: none;
+      border-radius: 6px;
+      background: transparent;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .refresh-btn:hover {
+      background: var(--btn-bg);
+      color: var(--accent);
+    }
+
+    .refresh-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .log-container {
+      background: var(--log-bg);
+      padding: 16px;
+      flex: 1;
+      overflow: auto;
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--log-text);
+      position: relative;
+    }
+
+    .log-container::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .log-container::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .log-container::-webkit-scrollbar-thumb {
+      background: #555;
+      border-radius: 4px;
+    }
+
+    .log-container::-webkit-scrollbar-thumb:hover {
+      background: #777;
+    }
+
+    .log-empty {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      min-height: 300px;
+      color: #666;
+      font-size: 14px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    .log-line {
+      min-height: 1.5em;
+      white-space: pre;
+    }
+
+    .log-line.error {
+      color: #f48771;
+    }
+
+    .log-line.warn {
+      color: #dcdcaa;
+    }
+
+    .log-line.info {
+      color: #6a9955;
+    }
+
+    /* ========== 响应式 ========== */
+    @media (max-width: 768px) {
+      #app {
+        padding: 16px 12px;
+      }
+
+      .settings-bar {
+        padding: 16px;
+        gap: 12px;
+      }
+
+      .settings-label {
+        font-size: 13px;
+      }
+
+      .settings-bar select,
+      .settings-bar input {
+        font-size: 16px;
+        padding: 8px 12px;
+      }
+
+      .btn {
+        font-size: 14px;
+        padding: 8px 16px;
+      }
+
+      .log-header {
+        padding: 12px 14px;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .log-title {
+        font-size: 14px;
+      }
+
+      .log-container {
+        padding: 12px;
+        min-height: 200px;
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      .log-empty {
+        min-height: 200px;
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      #app {
+        padding: 8px 6px;
+      }
+
+      .settings-bar {
+        padding: 12px;
+        gap: 10px;
+        border-radius: 8px;
+      }
+
+      .settings-group {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .settings-group-end {
+        margin-left: 0;
+      }
+
+      .settings-bar select {
+        flex: 1;
+        max-width: 120px;
+      }
+
+      .divider {
+        width: 100%;
+        height: 1px;
+        margin: 2px 0;
+      }
+
+      .btn-primary,
+      .btn-danger {
+        width: 100%;
+        text-align: center;
+        padding: 8px 6px;
+        font-size: 15px;
+      }
+
+      .log-section {
+        border-radius: 8px;
+      }
+
+      .log-header {
+        padding: 10px 12px;
+      }
+
+      .log-container {
+        padding: 10px;
+        min-height: 180px;
+        font-size: 11px;
+      }
+
+      .log-empty {
+        min-height: 250px;
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="app" v-cloak>
+    <!-- ========== 顶部功能设置区 ========== -->
+    <div class="settings-bar">
+      <!-- 定时任务设置 -->
+      <div class="settings-group">
+        <select v-model.number="scheduleHour">
+          <option v-for="h in scheduleOptions" :key="h" :value="h">{{ h }}</option>
+        </select>
+        <span class="settings-label">{{ t('scheduleSuffix') }}</span>
+         <buttn v-if="!executing" class="btn btn-primary" @click="executeNow">
+          {{ t('executeNow') }}
+        </buttn>
+        <button v-else class="btn btn-danger" @click="stopTask">
+          {{ t('stop') }}
+        </button>
+      </div>
+
+      <span class="divider"></span>
+
+      <!-- 主题 & 语言设置 -->
+      <div class="settings-group settings-group-end">
+        <div class="theme-btn-group">
+          <button class="theme-btn" :class="{ active: theme === 'dark' }" @click="setTheme('dark')" :title="t('dark')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+          </button>
+          <button class="theme-btn" :class="{ active: theme === 'light' }" @click="setTheme('light')" :title="t('light')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"/>
+              <line x1="12" y1="1" x2="12" y2="3"/>
+              <line x1="12" y1="21" x2="12" y2="23"/>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+              <line x1="1" y1="12" x2="3" y2="12"/>
+              <line x1="21" y1="12" x2="23" y2="12"/>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+          </button>
+          <button class="theme-btn" :class="{ active: theme === 'system' }" @click="setTheme('system')" :title="t('system')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+          </button>
+        </div>
+        <select v-model="locale" @change="onLocaleChange" :title="t('language')">
+          <option value="zh-CN">中文</option>
+          <option value="en-US">EN</option>
+        </select>
+        <a href="/app/fndepot" target="_blank" class="store-link" :title="t('openStore')">{{ t('openStore') }}</a>
+      </div>
+    </div>
+
+    <!-- ========== 日志显示区 ========== -->
+    <div class="log-section">
+      <div class="log-header">
+        <span class="log-title">{{ t('logTitle') }}</span>
+        <button class="refresh-btn" @click="onRefresh" :title="t('refresh')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 4 23 10 17 10"></polyline>
+            <polyline points="1 20 1 14 7 14"></polyline>
+            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="log-container" ref="logContainerRef">
+        <template v-if="logContent">
+          <div v-for="(line, idx) in logLines" :key="idx" :class="['log-line', getLineClass(line)]">
+            {{ line }}
+          </div>
+        </template>
+        <div v-else class="log-empty">{{ t('noLogs') }}</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script>
+    const { createApp, ref, computed, watch, onMounted, onUnmounted, nextTick } = Vue;
+
+    const BASE_URL = '/cgi/ThirdParty/fndepot.source/index.cgi/api';
+    const STORAGE_KEY_THEME = 'fndepot_theme';
+    const STORAGE_KEY_LOCALE = 'fndepot_locale';
+
+    // ========== 国际化文本 ==========
+    const messages = {
+      'zh-CN': {
+        scheduleSuffix: '小时执行1次',
+        executeNow: '立即执行',
+        executing: '执行中…',
+        theme: '主题',
+        dark: '暗黑',
+        light: '明亮',
+        system: '跟随系统',
+        language: '语言',
+        openStore: '打开商店',
+        logTitle: '任务详情',
+        noLogs: '暂无日志，点击"立即执行"开始任务',
+        stop: '停止',
+        refresh: '重新加载',
+      },
+      'en-US': {
+        scheduleSuffix: ', run once',
+        executeNow: 'Run Now',
+        executing: 'Running…',
+        theme: 'Theme',
+        dark: 'Dark',
+        light: 'Light',
+        system: 'System',
+        language: 'Language',
+        openStore: 'Open Store',
+        logTitle: 'Task Detail',
+        noLogs: 'No logs yet. Click "Run Now" to start.',
+        stop: 'Stop',
+        refresh: 'Reload',
+      },
+    };
+
+    createApp({
+      setup() {
+        // ========== 状态 ==========
+        const scheduleHour = ref(0);
+        const scheduleOptions = [1, 2, 3, 4, 6, 12, 24];
+        const theme = ref(localStorage.getItem(STORAGE_KEY_THEME) || 'system');
+        const locale = ref(localStorage.getItem(STORAGE_KEY_LOCALE) || 'zh-CN');
+        const logContent = ref('');
+        const executing = ref(false);
+        const logContainerRef = ref(null);
+
+        // ========== 国际化函数 ==========
+        const t = (key) => {
+          const msg = messages[locale.value] || messages['zh-CN'];
+          return msg[key] || key;
+        };
+
+        // ========== 计算属性 ==========
+        const logLines = computed(() => {
+          if (!logContent.value) return [];
+          return logContent.value.split('\n');
+        });
+
+        // ========== 主题切换 ==========
+        const applyTheme = (value) => {
+          if (value === 'system') {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+          } else {
+            document.documentElement.setAttribute('data-theme', value);
+          }
+        };
+
+        const setTheme = (value) => {
+          theme.value = value;
+          localStorage.setItem(STORAGE_KEY_THEME, value);
+          applyTheme(value);
+        };
+
+        const onLocaleChange = () => {
+          localStorage.setItem(STORAGE_KEY_LOCALE, locale.value);
+          document.documentElement.lang = locale.value;
+        };
+
+        // 监听系统主题变化
+        const systemThemeListener = (e) => {
+          if (theme.value === 'system') {
+            document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+          }
+        };
+
+        // ========== 调度时间保存到接口 ==========
+        let scheduleDebounceTimer = null;
+
+        const saveScheduleToServer = async (hour) => {
+          try {
+            const response = await fetch(`${BASE_URL}/tasks/schedule`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ hour }),
+            });
+            if (!response.ok) throw new Error('Save failed');
+          } catch (err) {
+            console.warn('Failed to save schedule to server:', err);
+          }
+        };
+
+        // ========== 调度时间变更（防抖保存到接口） ==========
+        watch(scheduleHour, (val) => {
+          if (scheduleDebounceTimer) clearTimeout(scheduleDebounceTimer);
+          scheduleDebounceTimer = setTimeout(() => {
+            saveScheduleToServer(val);
+          }, 500);
+        });
+
+        // ========== 日志滚动 ==========
+        const scrollToBottom = async () => {
+          await nextTick();
+          if (logContainerRef.value) {
+            logContainerRef.value.scrollTop = logContainerRef.value.scrollHeight;
+          }
+        };
+
+        // ========== 日志轮询 ==========
+        let pollTimer = null;
+        const nextStartLine = ref(0);
+
+        const fetchLogs = async (startLine) => {
+          const line = startLine ?? 0;
+          const response = await fetch(`${BASE_URL}/tasks/log?start_line=${line}`);
+          if (!response.ok) throw new Error('Fetch logs failed');
+          const result = await response.json();
+          if (result.code === 0 && result.data) {
+            return result.data;
+          }
+          throw new Error('Fetch logs failed: ' + (result.message || 'unknown'));
+        };
+
+        const checkTaskStatus = async () => {
+          try {
+            const response = await fetch(`${BASE_URL}/tasks/status`);
+            if (!response.ok) return null;
+            const result = await response.json();
+            if (result.code === 0 && result.data) {
+              return result.data.running;
+            }
+            return null;
+          } catch {
+            return null;
+          }
+        };
+
+        let pollStopFlag = false;
+
+        const startPolling = () => {
+          stopPolling();
+          pollStopFlag = false;
+          nextStartLine.value = 0;
+
+          const pollLoop = async () => {
+            if (pollStopFlag) return;
+
+            try {
+              const data = await fetchLogs(nextStartLine.value);
+              if (data.lines && data.lines.length > 0) {
+                const newContent = data.lines.join('\n');
+                logContent.value = logContent.value ? logContent.value + '\n' + newContent : newContent;
+                scrollToBottom();
+              }
+              nextStartLine.value = data.next_start;
+
+              const running = await checkTaskStatus();
+              if (running === false) {
+                stopPolling();
+                executing.value = false;
+                return;
+              }
+            } catch (err) {
+              console.warn('Poll logs failed:', err);
+            }
+
+            setTimeout(pollLoop, 1500);
+          };
+
+          pollLoop();
+        };
+
+        const stopPolling = () => {
+          pollStopFlag = true;
+          if (pollTimer) {
+            clearTimeout(pollTimer);
+            pollTimer = null;
+          }
+        };
+
+        // ========== 立即执行 ==========
+        const executeNow = async () => {
+          if (executing.value) return;
+          executing.value = true;
+          logContent.value = '';
+
+          try {
+            const response = await fetch(`${BASE_URL}/tasks/execute`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({}),
+            });
+            const result = await response.json();
+            const data = result.data;
+            if (!data) {
+              throw new Error('接口返回异常');
+            }
+            if (data.running !== true) {
+              // 任务启动失败（比如子进程立即退出）
+              throw new Error(data.message || '执行失败');
+            }
+            // 任务已在运行中或刚启动成功，开始轮询日志
+            startPolling();
+          } catch (err) {
+            logContent.value = `[ERROR] ${err.message || '执行失败'}`;
+            executing.value = false;
+          }
+        };
+
+        // ========== 停止任务 ==========
+        const stopTask = async () => {
+          try {
+            const response = await fetch(`${BASE_URL}/tasks/stop`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({}),
+            });
+            const result = await response.json();
+            if (!result.data) {
+              console.warn('Stop task failed:', result);
+            }
+          } catch (err) {
+            console.warn('Stop task failed:', err);
+          } finally {
+            stopPolling();
+            executing.value = false;
+          }
+        };
+
+        // ========== 日志行样式 ==========
+        const getLineClass = (line) => {
+          if (/\[ERROR\]|error|Error|失败/i.test(line)) return 'error';
+          if (/\[WARN\]|warn|Warn/i.test(line)) return 'warn';
+          if (/\[INFO\]|info|Info/i.test(line)) return 'info';
+          return '';
+        };
+
+        const onRefresh = () => {
+          initData();
+        };
+
+        // ========== 初始化 ==========
+        const initData = async () => {
+          // 加载定时任务配置
+          try {
+            const response = await fetch(`${BASE_URL}/tasks/get_schedule`);
+            const result = await response.json();
+            if (result.code === 0 && result.data && result.data.hour !== undefined) {
+              scheduleHour.value = result.data.hour;
+            }
+          } catch (err) {
+            console.warn('Load schedule config failed:', err);
+          }
+
+          // 加载上一次运行日志
+          try {
+            const data = await fetchLogs(0);
+            if (data.lines && data.lines.length > 0) {
+              logContent.value = data.lines.join('\n');
+              await nextTick();
+              scrollToBottom();
+            }
+          } catch (err) {
+            console.warn('Load last logs failed:', err);
+          }
+
+          // 检查当前任务状态，如正在运行则自动开始轮询日志
+          try {
+            const running = await checkTaskStatus();
+            if (running === true) {
+              executing.value = true;
+              startPolling();
+            }
+          } catch (err) {
+            console.warn('Check task status failed:', err);
+          }
+        };
+
+        onMounted(async () => {
+          applyTheme(theme.value);
+          document.documentElement.lang = locale.value;
+          const mq = window.matchMedia('(prefers-color-scheme: dark)');
+          mq.addEventListener('change', systemThemeListener);
+
+          await initData();
+        });
+
+        onUnmounted(() => {
+          stopPolling();
+          const mq = window.matchMedia('(prefers-color-scheme: dark)');
+          mq.removeEventListener('change', systemThemeListener);
+        });
+
+        return {
+          scheduleHour,
+          scheduleOptions,
+          theme,
+          locale,
+          logContent,
+          executing,
+          logContainerRef,
+          logLines,
+          t,
+          setTheme,
+          onLocaleChange,
+          executeNow,
+          stopTask,
+          getLineClass,
+          onRefresh,
+        };
+      },
+    }).mount('#app');
+  </script>
+</body>
+</html>
