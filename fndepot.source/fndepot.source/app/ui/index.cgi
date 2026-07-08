@@ -6,7 +6,7 @@ import sys
 import logging
 import json
 
-LOG_FILE = f'/var/apps/fndepot.source/var/app.log'
+LOG_FILE = f'/var/apps/fndepot.source/var/logs/app.log'
 
 def setup_logger():
     logging.basicConfig(

@@ -113,6 +113,24 @@
       white-space: nowrap;
     }
 
+    .system-notify-checkbox {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .system-notify-checkbox input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      accent-color: var(--accent);
+    }
+
     .settings-bar select,
     .settings-bar input {
       padding: 6px 12px;
@@ -421,23 +439,54 @@
       }
 
       .settings-bar {
-        padding: 12px;
-        gap: 10px;
+        padding: 10px;
+        gap: 8px;
         border-radius: 8px;
       }
 
       .settings-group {
         width: 100%;
-        justify-content: space-between;
+      }
+
+      .settings-group:first-of-type {
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: nowrap;
+        gap: 6px;
       }
 
       .settings-group-end {
         margin-left: 0;
+        justify-content: center;
       }
 
       .settings-bar select {
-        flex: 1;
-        max-width: 120px;
+        flex: 0 0 70px;
+        height: 36px;
+        padding: 4px 6px;
+      }
+
+      .settings-label {
+        flex: 0 0 auto;
+        font-size: 12px;
+      }
+
+      .btn-primary,
+      .btn-danger {
+        flex: 0 0 auto;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 36px;
+        padding: 4px 10px;
+        font-size: 13px;
+        margin-left: auto;
+      }
+
+      .system-notify-checkbox {
+        flex: 0 0 auto;
+        font-size: 12px;
+        margin-left: 2px;
       }
 
       .divider {
@@ -446,12 +495,20 @@
         margin: 2px 0;
       }
 
-      .btn-primary,
-      .btn-danger {
-        width: 100%;
-        text-align: center;
-        padding: 8px 6px;
-        font-size: 15px;
+      .store-link {
+        font-size: 13px;
+        padding: 0 10px;
+        height: 36px;
+      }
+
+      .theme-btn {
+        width: 32px;
+        height: 32px;
+      }
+
+      .theme-btn svg {
+        width: 16px;
+        height: 16px;
       }
 
       .log-section {
@@ -491,6 +548,10 @@
         <button v-else class="btn btn-danger" @click="stopTask">
           {{ t('stop') }}
         </button>
+        <label class="system-notify-checkbox" :title="t('systemNotifyLabel')">
+          <input type="checkbox" :checked="systemNotify" @change="onSystemNotifyChange" />
+          <span>{{ t('systemNotifyLabel') }}</span>
+        </label>
       </div>
 
       <span class="divider"></span>
@@ -566,7 +627,7 @@
     // ========== 国际化文本 ==========
     const messages = {
       'zh-CN': {
-        scheduleSuffix: '小时执行1次',
+        scheduleSuffix: '小时/次',
         executeNow: '立即执行',
         executing: '执行中…',
         theme: '主题',
@@ -579,9 +640,11 @@
         noLogs: '暂无日志，点击"立即执行"开始任务',
         stop: '停止',
         refresh: '重新加载',
+        systemNotifyLabel: '通知应用更新',
+        systemNotifyConfirm: '❌❌飞牛未开放自定义系统通知支持❌❌\n\n🔹 ❗❗实验性功能❗❗\n🔹 通知及时性，主要由FnDepot后台检测决定，挂着常开更及时\n🔹 使用注入飞牛系统数据库通知数据，以实现通知效果\n🔹 仅支持通知FnDepot商店应用更新\n\n确认开启应用更新通知❔',
       },
       'en-US': {
-        scheduleSuffix: ', run once',
+        scheduleSuffix: 'h/time',
         executeNow: 'Run Now',
         executing: 'Running…',
         theme: 'Theme',
@@ -594,6 +657,8 @@
         noLogs: 'No logs yet. Click "Run Now" to start.',
         stop: 'Stop',
         refresh: 'Reload',
+        systemNotifyLabel: 'Notify App Update',
+        systemNotifyConfirm: '❌❌FNOS does not support custom system notifications❌❌\n\n🔹 Inject data into FNOS system database to achieve notification effects\n🔹 Only supports FnDepot store app update notifications\n\nConfirm to enable app update notifications❔',
       },
     };
 
@@ -606,6 +671,7 @@
         const locale = ref(localStorage.getItem(STORAGE_KEY_LOCALE) || 'zh-CN');
         const logContent = ref('');
         const executing = ref(false);
+        const systemNotify = ref(false);
         const logContainerRef = ref(null);
 
         // ========== 国际化函数 ==========
@@ -662,6 +728,33 @@
           } catch (err) {
             console.warn('Failed to save schedule to server:', err);
           }
+        };
+
+        // ========== 系统通知应用更新 ==========
+        const saveSystemNotifyToServer = async (enabled) => {
+          try {
+            const response = await fetch(`${BASE_URL}/tasks/set_notify_upgrade`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ enabled }),
+            });
+            if (!response.ok) throw new Error('Save failed');
+          } catch (err) {
+            console.warn('Failed to save system notify to server:', err);
+          }
+        };
+
+        const onSystemNotifyChange = (event) => {
+          const checked = event.target.checked;
+          if (checked) {
+            const confirmed = confirm(t('systemNotifyConfirm'));
+            if (!confirmed) {
+              event.target.checked = false;
+              return;
+            }
+          }
+          systemNotify.value = checked;
+          saveSystemNotifyToServer(checked);
         };
 
         // ========== 调度时间变更（防抖保存到接口） ==========
@@ -819,8 +912,13 @@
           try {
             const response = await fetch(`${BASE_URL}/tasks/get_schedule`);
             const result = await response.json();
-            if (result.code === 0 && result.data && result.data.hour !== undefined) {
-              scheduleHour.value = result.data.hour;
+            if (result.code === 0 && result.data) {
+              if (result.data.hour !== undefined) {
+                scheduleHour.value = result.data.hour;
+              }
+              if (result.data.notify_upgrade !== undefined) {
+                systemNotify.value = result.data.notify_upgrade;
+              }
             }
           } catch (err) {
             console.warn('Load schedule config failed:', err);
@@ -872,6 +970,7 @@
           locale,
           logContent,
           executing,
+          systemNotify,
           logContainerRef,
           logLines,
           t,
@@ -881,6 +980,7 @@
           stopTask,
           getLineClass,
           onRefresh,
+          onSystemNotifyChange,
         };
       },
     }).mount('#app');

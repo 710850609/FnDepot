@@ -9,6 +9,7 @@ import sys
 from datetime import datetime
 
 TASK_LOG_FILE = f"/var/apps/fndepot.source/var/logs/tasks.log"
+APP_LOG_FILE = f"/var/apps/fndepot.source/var/logs/app.log"
 SCHEDULE_FILE = f"/vol1/@appcenter/fndepot.source/backend/tasks/schedule.json"
 TASK_PID_FILE = f"/var/apps/fndepot.source/var/.task_pid"
 TASK_STOP_FLAG = f"/var/apps/fndepot.source/var/.task_stop"
@@ -51,13 +52,40 @@ def schedule(params: dict, *args, **kwargs):
 def get_schedule(params: dict, *args, **kwargs):
     """获取定时任务配置"""
     if not os.path.exists(SCHEDULE_FILE):
-        return {'hour': 0}
+        return {'hour': 0, 'notify_upgrade': False}
     try:
         with open(SCHEDULE_FILE, 'r', encoding='utf-8') as f:
             schedule_data = json.load(f)
-        return {'hour': schedule_data.get('hour', 0)}
+        return {
+            'hour': schedule_data.get('hour', 0),
+            'notify_upgrade': schedule_data.get('notify_upgrade', False),
+        }
     except Exception:
-        return {'hour': 0}
+        return {'hour': 0, 'notify_upgrade': False}
+
+
+def set_notify_upgrade(params: dict, *args, **kwargs):
+    """保存系统通知应用更新开关到 SCHEDULE_FILE"""
+    params = params or {}
+    enabled = params.get('enabled', False)
+
+    schedule_dir = os.path.dirname(SCHEDULE_FILE)
+    os.makedirs(schedule_dir, exist_ok=True)
+
+    schedule_data = {}
+    if os.path.exists(SCHEDULE_FILE):
+        try:
+            with open(SCHEDULE_FILE, 'r', encoding='utf-8') as f:
+                schedule_data = json.load(f)
+        except Exception:
+            pass
+    schedule_data['notify_upgrade'] = enabled
+
+    with open(SCHEDULE_FILE, 'w', encoding='utf-8') as f:
+        json.dump(schedule_data, f, ensure_ascii=False)
+
+    logging.info(f"System notify saved: enabled={enabled}")
+    return {'message': 'ok'}
 
 
 def _is_task_running():
@@ -194,6 +222,18 @@ def tick():
 
     with open(SCHEDULE_FILE, 'r', encoding='utf-8') as f:
         schedule_data = json.load(f)
+
+    if schedule_data.get('notify_upgrade'):
+        try:
+            with open(APP_LOG_FILE, 'a') as log_file:
+                subprocess.Popen(
+                    [_VENV_PYTHON, '-u', _TASK_SCRIPT, APP_LOG_FILE, 'notify_upgrade'],
+                    stdout=log_file,
+                    stderr=log_file,
+                    start_new_session=True
+                )
+        except Exception as e:
+            logging.exception(f"系统通知应用更新失败: {e}")
 
     interval = schedule_data.get('hour')
     if not interval or interval <= 0:
