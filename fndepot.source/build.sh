@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BUILD_VER="0.0.1"
+BUILD_VER="0.0.2"
 APP_NAME="fndepot.source"
 
 declare -A PARAMS

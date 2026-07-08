@@ -92,10 +92,18 @@ def execute(params: dict, *args, **kwargs):
 
     params = params or {}
     trigger_type = params.get('trigger_type', 'manually')
+    trigger_time = params.get('trigger_time', None)
+
+    # 读取上次定时执行时间
+    last_executed_str = ''
+    if trigger_time is not None:
+        trigger_time_str = datetime.fromtimestamp(trigger_time / 1000).strftime('%Y-%m-%d %H:%M:%S')
+        last_executed_str = f"上次定时执行时间: {trigger_time_str}"
+
     # 清空日志文件，准备记录新任务日志
     open(TASK_LOG_FILE, 'w').close()
     with open(TASK_LOG_FILE, 'a') as f:
-        f.write(f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} {datetime.now().strftime('%Z')}- INFO - {'手动执行' if trigger_type == 'manually' else '定时任务'}\n")
+        f.write(f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} {datetime.now().strftime('%Z')}- INFO - {'手动执行' if trigger_type == 'manually' else '定时执行'}  {last_executed_str}\n")
 
     popen_kwargs = {}
     if os.name == 'nt':
@@ -192,19 +200,21 @@ def tick():
         return
 
     now = datetime.now()
-    current_hour = now.hour
+    current_ts_ms = int(now.timestamp() * 1000)
 
     last = schedule_data.get('last_executed')
-    if last is not None and current_hour - last < interval:
-        return
+    if last is not None:
+        elapsed_hours = (current_ts_ms - last) / 3600000
+        if elapsed_hours < interval:
+            return
 
     # 先写执行时间（锁），再执行，避免重复触发
-    schedule_data['last_executed'] = current_hour
+    schedule_data['last_executed'] = current_ts_ms
     with open(SCHEDULE_FILE, 'w', encoding='utf-8') as f:
         json.dump(schedule_data, f, ensure_ascii=False)
 
-    logging.info(f"定时任务触发: interval={interval}h, hour={current_hour}")
-    execute({'trigger_type': 'tick'})
+    logging.info(f"定时任务触发: interval={interval}h, hour={now.hour}")
+    execute({'trigger_type': 'tick', 'trigger_time': last})
 
 
 if __name__ == '__main__':
