@@ -112,21 +112,21 @@
     "display_name": "易组网",
     "desc": "简化使用EasyTier的一种UI界面，快速组网",
     "labels": "实用效率",
-    "version": "1.4.020604",
+    "version": "1.5.020604",
     "author": "BoB",
     "author_url": "https://github.com/710850609",
-    "download_url": "https://github.com/710850609/EasyTier-EUI/releases/download/1.2.020604-20260626165647/EasyTier-EUI-fnos-x86_64-1.2.020604-20260626165647.fpk",
+    "download_url": "https://github.com/710850609/EasyTier-EUI/releases/download/1.5.020604/EasyTier-EUI-fnos-x86_64-1.5.020604.fpk",
     "bug_report_url": "https://github.com/710850609/EasyTier-EUI/issues",
     "install_type": "存储空间",
     "size": "9",
     "history": {},
     "arch_diff": {
       "x86": {
-        "download_url": "https://github.com/710850609/EasyTier-EUI/releases/download/1.4.020604/EasyTier-EUI-fnos-x86_64-1.4.020604.fpk",
+        "download_url": "https://github.com/710850609/EasyTier-EUI/releases/download/1.5.020604/EasyTier-EUI-fnos-x86_64-1.5.020604.fpk",
         "size": "9"
       },
       "arm": {
-        "download_url": "https://github.com/710850609/EasyTier-EUI/releases/download/1.4.020604/EasyTier-EUI-fnos-aarch64-1.4.020604.fpk",
+        "download_url": "https://github.com/710850609/EasyTier-EUI/releases/download/1.5.020604/EasyTier-EUI-fnos-aarch64-1.5.020604.fpk",
         "size": "11"
       }
     },
