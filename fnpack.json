@@ -47,7 +47,7 @@
     "display_name": "TaoSync",
     "desc": "TaoSync是一个适用于OpenList/AList v3+的自动化同步工具。",
     "labels": "备份同步",
-    "version": "0.3.2-9",
+    "version": "0.4.0-10",
     "author": "BoB",
     "author_url": "https://github.com/710850609",
     "download_url": "https://github.com/710850609/fpk-TaoSync/releases/latest/download/TaoSync-0.3.2-9-x86.fpk",
@@ -58,10 +58,10 @@
     "changelog": "",
     "arch_diff": {
       "x86": {
-        "download_url": "https://github.com/710850609/fpk-TaoSync/releases/download/0.3.2-9/TaoSync-0.3.2-9-x86.fpk"
+        "download_url": "https://github.com/710850609/fpk-TaoSync/releases/download/0.4.0-10/TaoSync-0.4.0-10-x86.fpk"
       },
       "arm": {
-        "download_url": "https://github.com/710850609/fpk-TaoSync/releases/download/0.3.2-9/TaoSync-0.3.2-9-arm.fpk"
+        "download_url": "https://github.com/710850609/fpk-TaoSync/releases/download/0.4.0-10/TaoSync-0.4.0-10-arm.fpk"
       }
     }
   },
