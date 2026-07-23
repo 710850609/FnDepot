@@ -3,7 +3,7 @@
     "display_name": "OpenList",
     "desc": "OpenList是一个有韧性、长期治理、社区驱动的 AList 分支，旨在防御基于信任的开源攻击。支持多种存储的文件列表程序",
     "labels": "实用效率,备份同步",
-    "version": "4.2.3-10",
+    "version": "4.2.4-10",
     "author": "BoB",
     "author_url": "https://github.com/710850609",
     "download_url": "https://github.com/710850609/fpk-OpenList/releases/latest/download/OpenList-4.1.10-10-amd64.fpk",
@@ -14,10 +14,10 @@
     "changelog": "- 更新OpenList版本",
     "arch_diff": {
       "x86": {
-        "download_url": "https://github.com/710850609/fpk-OpenList/releases/download/4.2.3-10/OpenList-4.2.3-10-amd64.fpk"
+        "download_url": "https://github.com/710850609/fpk-OpenList/releases/download/4.2.4-10/OpenList-4.2.4-10-amd64.fpk"
       },
       "arm": {
-        "download_url": "https://github.com/710850609/fpk-OpenList/releases/download/4.2.3-10/OpenList-4.2.3-10-aarch64.fpk"
+        "download_url": "https://github.com/710850609/fpk-OpenList/releases/download/4.2.4-10/OpenList-4.2.4-10-aarch64.fpk"
       }
     }
   },
