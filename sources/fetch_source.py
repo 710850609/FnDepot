@@ -72,6 +72,7 @@ def main():
         "henry-hub/*",
         "xiaoliang2012/*",
         "16xiaoji/*",
+        "ryxiang/FnDepot",
     ])).split()
 
     OUTPUT_FILE = "repo_list.txt"
