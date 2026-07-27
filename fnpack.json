@@ -3,7 +3,10 @@
     "display_name": "OpenList",
     "desc": "OpenList是一个有韧性、长期治理、社区驱动的 AList 分支，旨在防御基于信任的开源攻击。支持多种存储的文件列表程序",
     "labels": "实用效率,备份同步",
-    "platform": ["x86", "arm"],
+    "platform": [
+      "x86",
+      "arm"
+    ],
     "version": "4.2.4-10",
     "author": "BoB",
     "author_url": "https://github.com/710850609",
@@ -26,7 +29,10 @@
     "display_name": "AdGuardHome",
     "desc": "免费开源、强大的网络范围广告和跟踪器阻止DNS服务器",
     "labels": "实用效率",
-    "platform": ["x86", "arm"],
+    "platform": [
+      "x86",
+      "arm"
+    ],
     "version": "0.107.78-15",
     "author": "BoB",
     "author_url": "https://github.com/710850609",
@@ -49,7 +55,10 @@
     "display_name": "TaoSync",
     "desc": "TaoSync是一个适用于OpenList/AList v3+的自动化同步工具。",
     "labels": "备份同步",
-    "platform": ["x86", "arm"],
+    "platform": [
+      "x86",
+      "arm"
+    ],
     "version": "0.4.0-10",
     "author": "BoB",
     "author_url": "https://github.com/710850609",
@@ -72,7 +81,10 @@
     "display_name": "SmartDNS",
     "desc": "SmartDNS是一个开源的DNS服务器，用于加速和优化网络访问。",
     "labels": "实用效率",
-    "platform": ["x86", "arm"],
+    "platform": [
+      "x86",
+      "arm"
+    ],
     "version": "48.2-006",
     "author": "BoB",
     "author_url": "https://github.com/710850609",
@@ -95,7 +107,10 @@
     "display_name": "DBland",
     "desc": "Go语言实现的Web版本数据库连接工具，内存占用少，启动快，支持MySQL，Oracle，SQLite等",
     "labels": "开发工具,数据库连接工具",
-    "platform": ["x86", "arm"],
+    "platform": [
+      "x86",
+      "arm"
+    ],
     "version": "1.1.1-003",
     "author": "BoB",
     "author_url": "https://github.com/710850609",
@@ -117,8 +132,11 @@
     "display_name": "易组网",
     "desc": "简化使用EasyTier的一种UI界面，快速组网",
     "labels": "实用效率",
-    "platform": ["x86", "arm"],
-    "version": "1.5.020604",
+    "platform": [
+      "x86",
+      "arm"
+    ],
+    "version": "1.6.020604",
     "author": "BoB",
     "author_url": "https://github.com/710850609",
     "download_url": "https://github.com/710850609/EasyTier-EUI/releases/download/1.5.020604/EasyTier-EUI-fnos-x86_64-1.5.020604.fpk",
@@ -128,21 +146,24 @@
     "history": {},
     "arch_diff": {
       "x86": {
-        "download_url": "https://github.com/710850609/EasyTier-EUI/releases/download/1.5.020604/EasyTier-EUI-fnos-x86_64-1.5.020604.fpk",
+        "download_url": "https://github.com/710850609/EasyTier-EUI/releases/download/1.6.020604/EasyTier-EUI-fnos-x86_64-1.6.020604.fpk",
         "size": "9"
       },
       "arm": {
-        "download_url": "https://github.com/710850609/EasyTier-EUI/releases/download/1.5.020604/EasyTier-EUI-fnos-aarch64-1.5.020604.fpk",
+        "download_url": "https://github.com/710850609/EasyTier-EUI/releases/download/1.6.020604/EasyTier-EUI-fnos-aarch64-1.6.020604.fpk",
         "size": "11"
       }
     },
-    "changelog": "- 优化：GitHub资源下载，优化识别处理加速地址返回HTTP状态码 567，导致下载失败情况\n- 优化：UI视觉效果，更通透\n- 优化：【配置】页面移动端适配\n----\n- 优化：【配置】页面新增模式关闭逻辑，避免误操作引起报错\n- 优化：【节点】页面移动端自适应，默认卡片列表显示，可手动切换到表格显示\n- 优化：前端页面显示存储KEY，从etLite改为eui，废弃旧命名，避免歧义。界面会重置默认渲染样式，重新设置即可\n- 优化：【节点】页面弹出选择项中，【列选择】改名【数据项选择】避免误解\n----\n- 优化：飞牛系用户版，改名：易组网(残血版)，避免用户误解\n- 优化：【应用】中各官方应用，最新版 改为 预发版\n- 优化：【应用-FnOS】 aarch64 按钮，改名 arm64 ，方便更多人理解\n----\n- 优化：【配置】中编辑文件页面更通透，优化渲染字体，尽量更符合编码视觉习惯，易区分易混淆字符，如：0Ol1\n- 优化：【节点】页面延迟时间显示，增加颜色提示，方便用户判断网络延迟是否正常"
+    "changelog": "- 新增：【配置】-代理与转发，支持网段映射\n- 修复：【配置】-代理与转发，网段映射为空时，保存启动失败问题\n- 新增：支持 musl Linux，支持 x86_64, aarch64, riscv64 架构\n- 新增：支持 docker 部署\n- 新增：【应用】-【Docker】页面增加docker版本使用说明\n- 修复：自定义易组网IP为0.0.0.0时，win、macos版本启动界面加载失败\n- 变更：新增配置默认：延迟优先模式、启用通信的加密\n- 修复：默认生成relay_network_whitelist = ，导致不支持转发 ([issue #3](https://github.com/710850609/EasyTier-EUI/issues/3))\n\n<br>\n\n----\n\n- New: [Configuration] - Proxy & Forwarding, now supports subnet mapping\n- Fix: [Config] - Proxy & Forward, save startup failure when subnet mapping is empty\n- New: Support for musl Linux, supporting x86_64, aarch64, riscv64 architectures\n- New: Support for Docker deployment\n- New: [Apps] - [Docker] page added with Docker version usage guide\n- Fix: Windows and macOS versions failed to load the startup interface when the custom EasyTier-EUI IP was set to 0.0.0.0\n- Changed: New default config options: latency-first mode, enable communication encryption\n- Fix: Default relay_network_whitelist = caused forwarding to fail ([issue #3](https://github.com/710850609/EasyTier-EUI/issues/3))"
   },
   "fndepot.source": {
     "display_name": "FnDepot应用源",
     "desc": "自动拉取GitHub上符合FnDepot商店规范的应用源、加速地址，并注入FnDepot商店",
     "labels": "实用效率",
-    "platform": ["x86", "arm"],
+    "platform": [
+      "x86",
+      "arm"
+    ],
     "version": "0.0.3",
     "author": "BoB",
     "author_url": "https://github.com/710850609",
