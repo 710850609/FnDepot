@@ -85,7 +85,7 @@
       "x86",
       "arm"
     ],
-    "version": "48.2-006",
+    "version": "48.4-006",
     "author": "BoB",
     "author_url": "https://github.com/710850609",
     "download_url": "https://github.com/710850609/fpk-smartdns/releases/latest/download/smartdns-47.1-004-x86.fpk",
@@ -96,10 +96,10 @@
     "changelog": "- 更新SmartDNS版本",
     "arch_diff": {
       "x86": {
-        "download_url": "https://github.com/710850609/fpk-smartdns/releases/download/48.2-006/smartdns-48.2-006-x86.fpk"
+        "download_url": "https://github.com/710850609/fpk-smartdns/releases/download/48.4-006/smartdns-48.4-006-x86.fpk"
       },
       "arm": {
-        "download_url": "https://github.com/710850609/fpk-smartdns/releases/download/48.2-006/smartdns-48.2-006-arm.fpk"
+        "download_url": "https://github.com/710850609/fpk-smartdns/releases/download/48.4-006/smartdns-48.4-006-arm.fpk"
       }
     }
   },
