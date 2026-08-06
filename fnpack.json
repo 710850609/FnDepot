@@ -136,7 +136,7 @@
       "x86",
       "arm"
     ],
-    "version": "2.0.020604",
+    "version": "2.1.020604",
     "author": "BoB",
     "author_url": "https://github.com/710850609",
     "download_url": "https://github.com/710850609/EasyTier-EUI/releases/download/1.5.020604/EasyTier-EUI-fnos-x86_64-1.5.020604.fpk",
@@ -146,15 +146,15 @@
     "history": {},
     "arch_diff": {
       "x86": {
-        "download_url": "https://github.com/710850609/EasyTier-EUI/releases/download/2.0.020604/EasyTier-EUI-fnos-x86_64-2.0.020604.fpk",
+        "download_url": "https://github.com/710850609/EasyTier-EUI/releases/download/2.1.020604/EasyTier-EUI-fnos-x86_64-2.1.020604.fpk",
         "size": "9"
       },
       "arm": {
-        "download_url": "https://github.com/710850609/EasyTier-EUI/releases/download/2.0.020604/EasyTier-EUI-fnos-aarch64-2.0.020604.fpk",
+        "download_url": "https://github.com/710850609/EasyTier-EUI/releases/download/2.1.020604/EasyTier-EUI-fnos-aarch64-2.1.020604.fpk",
         "size": "11"
       }
     },
-    "changelog": "- 新增: 易组网使用独立Logo\n- 新增: 支持安卓易组网版本\n - 安卓不支持多配置同时运行（受限于 Android 系统限制）\n - 安卓不支持热更新 Easytier 内核（受限于 Android 系统限制）\n - 安卓不支持设置 EasyTier 日志级别（受限于 EasyTier FFI 接口兼容支持）\n - 安卓不支持开机自启\n- 新增：【设置】支持设置易组网日志级别\n- 新增：【设置】支持清理易组网日志\n- 优化: 界面UI优化, 弹窗更清晰, 适配小屏幕组件展示 \n- 优化: 后端调用 Easytier 内核实现优化\n- 修复: 【配置】保存某些配置项空字符串问题\n\n<br>\n\n----\n\n- New: EasyTier-EUI now uses its own independent logo\n- New: Android version support\n - Android does not support running multiple configs simultaneously (limited by Android system restrictions)\n - Android does not support hot-updating the EasyTier core (limited by Android system restrictions)\n - Android does not support setting EasyTier log level (limited by EasyTier FFI interface compatibility)\n - Android does not support auto-start on boot\n- New: [Settings] Support setting EasyTier-EUI log level\n- New: [Settings] Support clearing EasyTier-EUI logs\n- Improved: UI enhancements, clearer dialogs, optimized component display for small screens\n- Improved: Backend EasyTier core integration optimized\n- Fixed: [Config] Empty string issue when saving certain config items"
+    "changelog": "- 新增：【配置】-自定义路由\n- 修复：易组网安卓版本下载、更新问题、去除不支持的开机自启配置\n- 修复：易组网windows，MacOS版本桌面图标统一为新图标\n\n<br>\n\n----\n\n- Added: [Config] - Custom Routes\n- Fixed: EasyTier-EUI Android download/update issues, removed unsupported auto-start configuration\n- Fixed: EasyTier-EUI Windows and macOS desktop icons unified to new icon"
   },
   "fndepot.source": {
     "display_name": "FnDepot应用源",
