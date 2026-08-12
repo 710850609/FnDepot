@@ -136,7 +136,6 @@ def main():
         app_names = list(fnpack_content.keys())
         has_valid_app = False
         is_original = True
-        check_repo_v1(repo, fnpack_content)
         for app_name in app_names:
             print(f"  检查应用 {app_name} ...")
 
@@ -196,6 +195,15 @@ def main():
                             has_fpk_package = True
                     except Exception:
                         pass
+
+                    if not has_fpk_package:
+                        try:
+                            arch_fpk_url = f"{proxy_url}https://raw.githubusercontent.com/{repo}/main/{app_name}/{app_name}.fpk"
+                            arch_fpk_resp = requests.head(arch_fpk_url, timeout=30)
+                            if arch_fpk_resp.status_code == 200:
+                                has_fpk_package = True
+                        except Exception:
+                            pass
 
             if has_fpk_package:
                 has_valid_app = True
@@ -341,7 +349,7 @@ def main():
                 print(f"  ✘ 仓库 {repo} 无效")
 
     # 主流程
-    fetch_repo()
+    # fetch_repo()
     check_and_add_repo()
 
     print("===== 带 fnpack.json 的 FnDepot 仓库 =====")
