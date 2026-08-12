@@ -39,7 +39,7 @@ def main():
     SUPPORTED_ARCHES = os.environ.get("SUPPORTED_ARCHES", "x86 arm").split()
 
     WHITELIST = os.environ.get("WHITELIST", " ".join([
-        "EWEDLCM/FnDepot",
+        # "EWEDLCM/FnDepot",
         "RROrg/fn-apps",
         "shuangji66/FnDepot",
         "jianzhichu/FnDepot",
@@ -126,10 +126,17 @@ def main():
             print(f"  ✘ 检查 fnpack.json 时出错: {e}")
             return False
 
+        if fnpack_content.get("schema_version") == "2" and fnpack_content.get("source_info") and fnpack_content.get("apps"):
+            return check_repo_v2(repo, fnpack_content)
+        else:
+            return check_repo_v1(repo, fnpack_content)
+
+
+    def check_repo_v1(repo, fnpack_content) -> bool:
         app_names = list(fnpack_content.keys())
         has_valid_app = False
         is_original = True
-
+        check_repo_v1(repo, fnpack_content)
         for app_name in app_names:
             print(f"  检查应用 {app_name} ...")
 
@@ -199,6 +206,10 @@ def main():
         else:
             print("  ✘ 存在 fnpack.json 但无有效应用或非原创仓库")
             return False
+
+    def check_repo_v2(repo, fnpack_content) -> bool:
+        print(f"跳过第二版本处理 {repo} ...")
+        return False
 
     def add_repo(url):
         """追加有效仓库地址"""
