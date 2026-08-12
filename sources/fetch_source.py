@@ -349,7 +349,7 @@ def main():
                 print(f"  ✘ 仓库 {repo} 无效")
 
     # 主流程
-    # fetch_repo()
+    fetch_repo()
     check_and_add_repo()
 
     print("===== 带 fnpack.json 的 FnDepot 仓库 =====")
