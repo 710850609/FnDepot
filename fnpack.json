@@ -33,7 +33,7 @@
       "x86",
       "arm"
     ],
-    "version": "0.107.78-15",
+    "version": "0.107.79-15",
     "author": "BoB",
     "author_url": "https://github.com/710850609",
     "download_url": "https://github.com/710850609/fpk-adguardhome/releases/download/0.107.72-13/AdGuardHome-0.107.72-13-x86.fpk",
@@ -44,10 +44,10 @@
     "changelog": "- 更新AdGuardHome版本",
     "arch_diff": {
       "x86": {
-        "download_url": "https://github.com/710850609/fpk-adguardhome/releases/download/0.107.78-15/AdGuardHome-0.107.78-15-x86.fpk"
+        "download_url": "https://github.com/710850609/fpk-adguardhome/releases/download/0.107.79-15/AdGuardHome-0.107.79-15-x86.fpk"
       },
       "arm": {
-        "download_url": "https://github.com/710850609/fpk-adguardhome/releases/download/0.107.78-15/AdGuardHome-0.107.78-15-arm.fpk"
+        "download_url": "https://github.com/710850609/fpk-adguardhome/releases/download/0.107.79-15/AdGuardHome-0.107.79-15-arm.fpk"
       }
     }
   },
