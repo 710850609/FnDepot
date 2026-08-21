@@ -136,25 +136,25 @@
       "x86",
       "arm"
     ],
-    "version": "2.2.020604",
+    "version": "2.2.020604-20260821180334",
     "author": "BoB",
     "author_url": "https://github.com/710850609",
-    "download_url": "https://github.com/710850609/EasyTier-EUI/releases/download/1.5.020604/EasyTier-EUI-fnos-x86_64-1.5.020604.fpk",
+    "download_url": "https://github.com/710850609/EasyTier-EUI/releases/download/2.2.020604/EasyTier-EUI-fnos-x86_64-2.2.020604.fpk",
     "bug_report_url": "https://github.com/710850609/EasyTier-EUI/issues",
     "install_type": "存储空间",
     "size": "9",
     "history": {},
     "arch_diff": {
       "x86": {
-        "download_url": "https://github.com/710850609/EasyTier-EUI/releases/download/2.2.020604/EasyTier-EUI-fnos-x86_64-2.2.020604.fpk",
+        "download_url": "https://github.com/710850609/EasyTier-EUI/releases/download/2.2.020604-20260821180334/EasyTier-EUI-fnos-x86_64-2.2.020604-20260821180334.fpk",
         "size": "9"
       },
       "arm": {
-        "download_url": "https://github.com/710850609/EasyTier-EUI/releases/download/2.2.020604/EasyTier-EUI-fnos-aarch64-2.2.020604.fpk",
+        "download_url": "https://github.com/710850609/EasyTier-EUI/releases/download/2.2.020604-20260821180334/EasyTier-EUI-fnos-aarch64-2.2.020604-20260821180334.fpk",
         "size": "11"
       }
     },
-    "changelog": "- 新增：【配置】支持二维码分享网络、支持扫描二维码增加配置\n - 仅支持https方式访问才能扫码（浏览器安全限制）\n- 优化：【配置】只提交最小有效配置\n- 优化：【节点】安卓版显示当前设备名\n- 优化：安卓通知自适应中/英文显示，增加显示vpn uptime\n- 修复：安卓后台被杀，小概率无法直接进入app\n----\n- 新增：【配置】支持从剪贴板添加配置\n- 新增：【设置】增加GitHub反馈入口\n- 新增：【应用】-Android 支持x86_64和x86架构\n- 优化：【配置】扫码新增时，支持不填写配置名称，识别成功后立即保存\n- 修复：【配置】保存配置时，界面设置没覆盖到配置已有配置项\n- 修复：飞牛版本、Linux版本（非开机自启模式）、MacOS版本（非开机自启模式）、Docker版本下，关闭组网后，组网进程未被完全终止 ([issues #5](https://github.com/710850609/EasyTier-EUI/issues/5))\n----\n- 新增：安卓版本支持选择EasyTier内核版本\n---- \n- 新增：安卓版本增加开屏动画，优化视觉体验\n- 新增：【设置】-其它支持自定义可选初始节点\n- 修复：飞牛版本在2.0时引入，某些情况下导致系统重启报错 ([issues #6](https://github.com/710850609/EasyTier-EUI/issues/6))\n----\n- 优化：【设置】合并请求，减少网络请求次数，按需请求必要数据返回，减少流量消耗\n- 优化：安卓版本第一次申请摄像头权限后，页面被重置，操作中断不友好\n- 优化：整体UI视觉，更圆润、更轻盈\n- 优化：飞牛版本启动端口占用时，抛出 EasyTier 报错提示\n- 修复：自定义初始节点默认易组网维护节点时，没显示在配置可选列表中\n\n<br>\n\n----\n\n- Added: [Config] Support QR code sharing for network config, support scanning QR code to add config\n - QR scanning requires HTTPS access (browser security restriction)\n- Improved: [Config] Only submit minimal valid configuration\n- Improved: [Peers] Display current device name on Android\n- Improved: Android notification adapts to Chinese/English display, added VPN uptime display\n- Fixed: Rare issue where Android app couldn't be opened directly after being killed in background\n----\n- Added: [Config] Support adding configuration from clipboard\n- Added: [Settings] Add GitHub feedback entry\n- Added: [App] Android now supports x86_64 and x86 architectures\n- Improved: [Config] QR scan add now supports saving without entering a config name, saves immediately after recognition\n- Fixed: [Config] UI settings were not overriding existing config items when saving configuration\n- Fixed: On FNOS, Linux (non-autostart mode), and macOS (non-autostart mode) and Docker, the networking process was not fully terminated after stopping the network (https://github.com/710850609/EasyTier-EUI/issues/5)\n----\n- Added: Android version supports selecting EasyTier kernel version\n---- \n- Added: Splash screen animation on Android for improved visual experience\n- Added: [Settings] - Support for custom optional initial nodes\n- Fixed: FnOS version 2.0 caused system reboot error in certain cases ([issues #6](https://github.com/710850609/EasyTier-EUI/issues/6))\n----\n- Optimized: Merged requests in Settings to reduce network requests, fetch only necessary data on demand, and reduce data consumption\n- Optimized: Fixed the issue where the page would reset after the first camera permission request on Android, causing an unfriendly interruption\n- Optimized: Refined the overall UI visuals for a rounder and lighter appearance\n- Optimized: Added EasyTier error prompt when the startup port is occupied on the FnOS version\n- Fixed: Custom initial nodes defaulting to the EasyTier maintenance node were not showing in the configurable options list"
+    "changelog": "新增：安卓版支持应用启动重连，自动运行上次未手动关闭的配置 (Feature #9)\n优化：安卓版VPN支持IPv6、支持魔法DNS、支持MTU、根据物理网络自适应是否计量网络\n优化：安卓版VPN排除干扰电话服务、常见推送服务、系统服务。手动强制路由时，尽量保证系统正常运行\n修复：安卓版未能显示多个连接协议\n优化：【设置】页面响应，各个页面亮模式视觉优化、安全区域适配、底部菜单栏毛玻璃效果"
   },
   "fndepot.source": {
     "display_name": "FnDepot应用源",
