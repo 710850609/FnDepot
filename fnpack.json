@@ -7,7 +7,7 @@
       "x86",
       "arm"
     ],
-    "version": "4.2.5-10",
+    "version": "4.2.6-10",
     "author": "BoB",
     "author_url": "https://github.com/710850609",
     "download_url": "https://github.com/710850609/fpk-OpenList/releases/latest/download/OpenList-4.1.10-10-amd64.fpk",
@@ -18,10 +18,10 @@
     "changelog": "- 更新OpenList版本",
     "arch_diff": {
       "x86": {
-        "download_url": "https://github.com/710850609/fpk-OpenList/releases/download/4.2.5-10/OpenList-4.2.5-10-amd64.fpk"
+        "download_url": "https://github.com/710850609/fpk-OpenList/releases/download/4.2.6-10/OpenList-4.2.6-10-amd64.fpk"
       },
       "arm": {
-        "download_url": "https://github.com/710850609/fpk-OpenList/releases/download/4.2.5-10/OpenList-4.2.5-10-aarch64.fpk"
+        "download_url": "https://github.com/710850609/fpk-OpenList/releases/download/4.2.6-10/OpenList-4.2.6-10-aarch64.fpk"
       }
     }
   },
