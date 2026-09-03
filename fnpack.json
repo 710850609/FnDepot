@@ -136,7 +136,7 @@
       "x86",
       "arm"
     ],
-    "version": "2.3.020604",
+    "version": "2.4.020604",
     "author": "BoB",
     "author_url": "https://github.com/710850609",
     "download_url": "https://github.com/710850609/EasyTier-EUI/releases/download/2.2.020604/EasyTier-EUI-fnos-x86_64-2.2.020604.fpk",
@@ -146,15 +146,15 @@
     "history": {},
     "arch_diff": {
       "x86": {
-        "download_url": "https://github.com/710850609/EasyTier-EUI/releases/download/2.3.020604/EasyTier-EUI-fnos-x86_64-2.3.020604.fpk",
+        "download_url": "https://github.com/710850609/EasyTier-EUI/releases/download/2.4.020604/EasyTier-EUI-fnos-x86_64-2.4.020604.fpk",
         "size": "9"
       },
       "arm": {
-        "download_url": "https://github.com/710850609/EasyTier-EUI/releases/download/2.3.020604/EasyTier-EUI-fnos-aarch64-2.3.020604.fpk",
+        "download_url": "https://github.com/710850609/EasyTier-EUI/releases/download/2.4.020604/EasyTier-EUI-fnos-aarch64-2.4.020604.fpk",
         "size": "11"
       }
     },
-    "changelog": "- 新增：安卓版支持应用启动重连，自动运行上次未手动关闭的配置 ([Feature #9](https://github.com/710850609/EasyTier-EUI/issues/9))\n- 优化：安卓版VPN支持IPv6、支持魔法DNS、支持MTU、根据物理网络自适应是否计量网络\n- 优化：安卓版VPN排除干扰电话服务、常见推送服务、系统服务。手动强制路由时，尽量保证系统正常运行\n- 修复：安卓版未能显示多个连接协议\n----\n- 优化：【设置】页面响应，各个页面亮模式视觉优化、安全区域适配、底部菜单栏毛玻璃效果\n----\n- 废弃：【应用】-IOS TestFlight 废弃\n- 新增：【应用】-IOS 支持跳转App Store正式版下载\n- 优化：小屏幕底部菜单、二级菜单及其页面显示\n- 修复：【节点】页面底部安全区域适配\n- 修复：ffi模式下，【节点】页面没显示ipv6相关协议，如：tcp6，udp6\n \n<br>\n\n----\n\n- New: Android version now supports app startup reconnect, automatically running the last config that was not manually stopped ([Feature #9](https://github.com/710850609/EasyTier-EUI/issues/9))\n- Improved: Android VPN now supports IPv6, Magic DNS, MTU, and adaptive metered network detection based on physical network\n- Improved: Android VPN excludes interference with phone services, common push services, and system services. When manually forcing routes, system operations are preserved as much as possible\n- Fixed: Android version failed to display multiple connection protocols\n----\n- Optimized: [Settings] page responsiveness, light mode visual refinements across all pages, safe area adaptation, bottom navigation bar frosted glass effect\n----\n- Deprecated: [App] - iOS TestFlight deprecated\n- New: [App] - iOS supports redirecting to App Store for official release download\n- Improved: Small screen bottom menu, sub-menu and page display\n- Fixed: [Nodes] page bottom safe area adaptation\n- Fixed: Under FFI mode, [Nodes] page did not display IPv6-related protocols, such as tcp6, udp6"
+    "changelog": "- 新增：【节点】页面支持查看中继路径（默认开启） - 新增：【配置】页面支持自定义魔法DNS顶级域名 - 优化：安卓版本默认MTU为1300（参考官方安卓2.6.4版本固定值） - 优化：ffi模式选择内置版本时，跳过下载内核 - 优化：【节点】页面更多菜单显示，优化节点排序 - 优化：【配置】页面统一更多按钮菜单 - 修复：适配安卓、飞牛App导航栏、全面屏（有手势线）、全面屏（无手势线） - 修复：开启魔法DNS后，无法通过魔法DNS域名访问 ---- - 新增：【节点】页面支持查看 代理/协议，可查看节点代理CIDR，或是激活的KCP/QUIC代理协议（受限于et内核，安卓版不支持） - 优化：【节点】页面的 中继路径 改为 中继节点（受限于et内核支持，不显示完整路径） - 修复：飞牛用户版启动失败问题 ---- - 新增：【节点】页面支持查看 EasyTier 日志 - 优化：【节点】页面的 代理/协议 改名 子网路由，避免歧义 - 优化：【应用】-Docker 合并优化启动命令 - 优化：【配置】新增配置，默认不启用 系统转发，避免某些设备开启防火墙导致子网代理不可用 - 修复：飞牛用户版统，改遗留的残血版名称，统一用户版 - 修复：某些场景下，跨配置修改导致配置参数污染问题"
   },
   "fndepot.source": {
     "display_name": "FnDepot应用源",
