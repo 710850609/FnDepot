@@ -13,7 +13,7 @@ FnDepot 是运行于 FNOS（飞牛OS）上的去中心化第三方应用管理�
 | [OpenList](OpenList/) | 有韧性、长期治理、社区驱动的 AList 分支，支持多种存储的文件列表程序 | 4.2.2-10 |
 | [AdGuardHome](AdGuardHome/) | 免费开源、强大的网络范围广告和跟踪器阻止DNS服务器 | 0.107.77-15 |
 | [TaoSync](TaoSync/) | 适用于 OpenList/AList v3+ 的自动化同步工具 | 0.3.2-9 |
-| [SmartDNS](SmartDNS/) | 开源DNS服务器，用于加速和优化网络访问 | 48.2-006 |
+| [SmartDNS](smartdns/) | 开源DNS服务器，用于加速和优化网络访问 | 48.2-006 |
 | [DBland](DBland/) | Go语言实现的Web版本数据库连接工具，支持MySQL、Oracle、SQLite | 1.1.1-003 |
 | [EasyTier-EUI](EasyTier-EUI/) | 简化使用EasyTier的一种UI界面，快速组网 | 1.2.020604-20260626165647 |
 

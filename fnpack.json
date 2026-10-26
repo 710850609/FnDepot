@@ -78,7 +78,7 @@
     }
   },
   "smartdns": {
-    "display_name": "SmartDNS",
+    "display_name": "smartdns",
     "desc": "SmartDNS是一个开源的DNS服务器，用于加速和优化网络访问。",
     "labels": "实用效率",
     "platform": [
@@ -89,7 +89,7 @@
     "author": "BoB",
     "author_url": "https://github.com/710850609",
     "download_url": "https://github.com/710850609/fpk-smartdns/releases/latest/download/smartdns-47.1-004-x86.fpk",
-    "bug_report_url": "https://github.com/710850609/fpk-SmartDNS/issues",
+    "bug_report_url": "https://github.com/710850609/fpk-smartdns/issues",
     "install_type": "存储空间",
     "size": "8",
     "history": {},
