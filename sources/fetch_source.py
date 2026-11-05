@@ -43,6 +43,7 @@ def fetch_EWEDLCM_valid_sources(proxy_url: str = "") -> list[str]:
         for line in resp.text.splitlines():
             repo = line.strip()
             if repo and not repo.startswith("#"):
+                repo = repo.replace("https://github.com/", "").strip()
                 valid_sources.append(repo)
         print(f"获取 EWEDLCM 有效仓库列表: {len(valid_sources)} 个")
     except Exception as e:
