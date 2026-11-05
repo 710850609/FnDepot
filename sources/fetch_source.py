@@ -149,10 +149,11 @@ def main():
             print(f"  ✘ 检查 fnpack.json 时出错: {e}")
             return False
 
-        if fnpack_content.get("schema_version") == "2" and fnpack_content.get("source_info") and fnpack_content.get("apps"):
-            return check_repo_v2(repo, fnpack_content)
-        else:
-            return check_repo_v1(repo, fnpack_content)
+        return check_repo_v1(repo, fnpack_content)
+        # if fnpack_content.get("schema_version") == "2" and fnpack_content.get("source_info") and fnpack_content.get("apps"):
+        #     return check_repo_v2(repo, fnpack_content)
+        # else:
+        #     return check_repo_v1(repo, fnpack_content)
 
 
     def check_repo_v1(repo, fnpack_content) -> bool:
