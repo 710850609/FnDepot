@@ -28,6 +28,27 @@ def parse_args():
     return params
 
 
+def fetch_EWEDLCM_valid_sources(proxy_url: str = "") -> list[str]:
+    """
+    获取EWEDLCM有效仓库列表
+    https://github.com/EWEDLCM/FnDepot/blob/main/valid_sources.txt
+    """
+    valid_sources = []
+    try:
+        resp = requests.get(
+            f"{proxy_url}https://raw.githubusercontent.com/EWEDLCM/FnDepot/refs/heads/main/valid_sources.txt",
+            timeout=30,
+        )
+        resp.raise_for_status()
+        for line in resp.text.splitlines():
+            repo = line.strip()
+            if repo and not repo.startswith("#"):
+                valid_sources.append(repo)
+        print(f"获取 EWEDLCM 有效仓库列表: {len(valid_sources)} 个")
+    except Exception as e:
+        print(f"获取 EWEDLCM 有效仓库列表时出错: {e}")
+    return valid_sources
+
 def main():
     params = parse_args()
 
@@ -46,6 +67,8 @@ def main():
         "yuexps/FnDepot",
         "hbestm/FnDepot",
     ])).split()
+
+    WHITELIST.extend(fetch_EWEDLCM_valid_sources(proxy_url))
 
     BLACKLIST = os.environ.get("BLACKLIST", " ".join([
         "12hgl/FnDepot",
