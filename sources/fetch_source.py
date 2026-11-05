@@ -52,7 +52,7 @@ def fetch_EWEDLCM_valid_sources(proxy_url: str = "") -> list[str]:
 def main():
     params = parse_args()
 
-    github_api_sleep = float(params.get("github_api_sleep", 0))
+    github_api_sleep = float(params.get("github_api_sleep", 2))
     print(f"github api请求时，睡眠时间: {github_api_sleep} s")
 
     proxy_url = ""
