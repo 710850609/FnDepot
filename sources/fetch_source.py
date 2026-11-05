@@ -68,7 +68,9 @@ def main():
         "hbestm/FnDepot",
     ])).split()
 
-    WHITELIST.extend(fetch_EWEDLCM_valid_sources(proxy_url))
+    valid_sources = fetch_EWEDLCM_valid_sources(proxy_url)
+    WHITELIST.extend(valid_sources)
+    print(f"EWEDLCM_valid_sources 白名单仓库: {' '.join(WHITELIST)}")
 
     BLACKLIST = os.environ.get("BLACKLIST", " ".join([
         "12hgl/FnDepot",
@@ -149,6 +151,9 @@ def main():
             print(f"  ✘ 检查 fnpack.json 时出错: {e}")
             return False
 
+        if repo in WHITELIST:
+            print(f"  ✘ {repo} 是白名单仓库，跳过检查")
+            return True
         return check_repo_v1(repo, fnpack_content)
         # if fnpack_content.get("schema_version") == "2" and fnpack_content.get("source_info") and fnpack_content.get("apps"):
         #     return check_repo_v2(repo, fnpack_content)
