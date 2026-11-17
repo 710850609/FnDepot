@@ -150,3 +150,5 @@ https://github.com/latte03/fnos-apps
 https://github.com/maglcal/fnmedia-dl
 https://github.com/moyilong/ofterm
 https://github.com/tnnevol/fn-os-apps
+
+https://github.com/superproxy/FnDepot
