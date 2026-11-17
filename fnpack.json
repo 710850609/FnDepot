@@ -59,7 +59,7 @@
       "x86",
       "arm"
     ],
-    "version": "0.4.0-10",
+    "version": "0.5.0-10",
     "author": "BoB",
     "author_url": "https://github.com/710850609",
     "download_url": "https://github.com/710850609/fpk-TaoSync/releases/download/0.4.0-10/TaoSync-0.4.0-10-x86.fpk",
@@ -70,10 +70,10 @@
     "changelog": "",
     "arch_diff": {
       "x86": {
-        "download_url": "https://github.com/710850609/fpk-TaoSync/releases/download/0.4.0-10/TaoSync-0.4.0-10-x86.fpk"
+        "download_url": "https://github.com/710850609/fpk-TaoSync/releases/download/0.5.0-10/TaoSync-0.5.0-10-x86.fpk"
       },
       "arm": {
-        "download_url": "https://github.com/710850609/fpk-TaoSync/releases/download/0.4.0-10/TaoSync-0.4.0-10-arm.fpk"
+        "download_url": "https://github.com/710850609/fpk-TaoSync/releases/download/0.5.0-10/TaoSync-0.5.0-10-arm.fpk"
       }
     }
   },
